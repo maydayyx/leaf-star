@@ -34,6 +34,11 @@ export default <RouterConfig>{
       name:'friend',
         path:'/friend',
         component:()=>import('../pages/friend/index.vue')
+    },
+    {
+      name:'notFound',
+      path:'/:pathMatch(.*)*',
+      component:()=>import('../pages/error.vue')
     }
   ],
 };
