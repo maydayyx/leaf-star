@@ -106,7 +106,7 @@
                   class="badge badge-sm badge-outline !pl-1.5 !pr-1 pt-px font-mono !text-[.6rem] font-bold tracking-widest opacity-50"
                   >ZH</span
                 >
-                <span class="font-[sans-serif]" @click="setLocale('zh_CN')"
+                <span class="font-[sans-serif]"  @click="setLocale('zh_CN')"
                   >简体中文</span
                 >
               </button>
@@ -185,6 +185,9 @@
 </template>
 
 <script setup>
+//获取nuxt仓库
+const nuxtStore = useNuxtStore();
+
 //在页面挂载之前
 onMounted(() => {
   /* 
@@ -193,18 +196,28 @@ onMounted(() => {
   */
   nuxtStore.initTheme();
 });
-//获取nuxt仓库
-const nuxtStore = useNuxtStore();
+
 //点击按钮切换主题
 const changeTheme = () => {
   nuxtStore.setTheme();
 };
+
 //控制搜索框的显示
 const showSearchBox = ref(false);
+
 //点击搜索按钮的回调
 const handleSearch = () => {
   showSearchBox.value = !showSearchBox.value;
 };
+
 //i18n国际化
 const { locale, setLocale } = useI18n();
+
+//监视语言的切换
+watch(()=>locale.value,(newLang)=>{
+  // 如果语言切换了，则保存到localStorage
+  if(newLang) {
+    localStorage.setItem('lang',newLang)
+  }
+})
 </script>
