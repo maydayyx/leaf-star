@@ -2,11 +2,51 @@
   <div
     class="navbar bg-base-100 px-6 md:px-10 lg:px-60 xl:px-80 transition-all"
   >
-    <div class="navbar-start">
+    <div class="navbar-start hidden sm:block">
       <div class="avatar">
         <div class="w-10 h-auto rounded-full">
           <img src="../assets/img/avatar.jpg" />
         </div>
+      </div>
+    </div>
+    <div class="navbar-start block sm:hidden z-60">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h7"
+            />
+          </svg>
+        </div>
+        <ul
+          tabindex="0"
+          class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <NuxtLink to="/home">{{ $t("Home") }}</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/archive">{{ $t("Archive") }}</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/share">{{ $t("Share") }}</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/friend">{{ $t("Friend") }}</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/about">{{ $t("About") }}</NuxtLink>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="navbar-center hidden sm:block">
@@ -15,63 +55,48 @@
           <NuxtLink to="/" class="btn btn-ghost rounded-btn">{{
             $t("Home")
           }}</NuxtLink>
-          <NuxtLink to="/archive" class="btn btn-ghost rounded-btn">{{ $t("Archive") }}</NuxtLink>
+          <NuxtLink to="/archive" class="btn btn-ghost rounded-btn">{{
+            $t("Archive")
+          }}</NuxtLink>
           <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">
-              {{$t('Share')}}
+              {{ $t("Share") }}
             </div>
             <ul
               tabindex="0"
               class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
             >
-              <li><a>{{ $t('Utils') }}</a></li>
+              <li>
+                <a>{{ $t("Utils") }}</a>
+              </li>
             </ul>
           </div>
-          <NuxtLink to="/friend" class="btn btn-ghost rounded-btn">{{ $t("Friend") }}</NuxtLink>
+          <NuxtLink to="/friend" class="btn btn-ghost rounded-btn">{{
+            $t("Friend")
+          }}</NuxtLink>
           <NuxtLink to="/about" class="btn btn-ghost rounded-btn">{{
             $t("About")
           }}</NuxtLink>
         </div>
       </div>
     </div>
-    <div class="navbar-center block sm:hidden z-60">
-      <div class="drawer">
-        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content">
-          <!-- Page content here -->
-          <label for="my-drawer" class="drawer-button">
-            <a class="btn btn-ghost text-xl" tabindex="1">Leaf_Star</a>
-          </label>
-        </div>
-        <div class="drawer-side z-60">
-          <label
-            for="my-drawer"
-            aria-label="close sidebar"
-            class="drawer-overlay"
-          ></label>
-          <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-            <!-- Sidebar content here -->
-            <li><a>Sidebar Item 1</a></li>
-            <li><a>Sidebar Item 2</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
     <div class="navbar-end">
       <!-- 搜索框 -->
       <input
+        ref="searchInput"
         v-if="showSearchBox"
         type="text"
         :placeholder="`${$t('TypeHere')}`"
         class="input input-sm mx-6 hidden sm:block w-100 max-w-xs"
-        @mouseleave="showSearchBox = false"
+        @blur="hiddenSearchBox"
       />
       <!-- 搜索图标 -->
       <svg
         v-show="!showSearchBox"
         @click="handleSearch"
         xmlns="http://www.w3.org/2000/svg"
-        class="search-icon hidden sm:block w-8 h-8 mr-3 mt-2"
+        class="search-icon hidden sm:block w-8 h-8 mr-3 mt-2 cursor-pointer"
         viewBox="0 0 24 38"
       >
         <path
@@ -106,7 +131,7 @@
                   class="badge badge-sm badge-outline !pl-1.5 !pr-1 pt-px font-mono !text-[.6rem] font-bold tracking-widest opacity-50"
                   >ZH</span
                 >
-                <span class="font-[sans-serif]"  @click="setLocale('zh_CN')"
+                <span class="font-[sans-serif]" @click="setLocale('zh_CN')"
                   >简体中文</span
                 >
               </button>
@@ -205,19 +230,35 @@ const changeTheme = () => {
 //控制搜索框的显示
 const showSearchBox = ref(false);
 
+//搜索框实例
+const searchInput = ref(null)
+
 //点击搜索按钮的回调
 const handleSearch = () => {
   showSearchBox.value = !showSearchBox.value;
+  if(showSearchBox.value) {
+    setTimeout(() => {
+      searchInput.value.focus();
+    }, 10);
+  }
 };
+
+//失去焦点后隐藏搜索框
+const hiddenSearchBox = () => {
+  showSearchBox.value=!showSearchBox
+}
 
 //i18n国际化
 const { locale, setLocale } = useI18n();
 
 //监视语言的切换
-watch(()=>locale.value,(newLang)=>{
-  // 如果语言切换了，则保存到localStorage
-  if(newLang) {
-    localStorage.setItem('lang',newLang)
+watch(
+  () => locale.value,
+  (newLang) => {
+    // 如果语言切换了，则保存到localStorage
+    if (newLang) {
+      localStorage.setItem("lang", newLang);
+    }
   }
-})
+);
 </script>

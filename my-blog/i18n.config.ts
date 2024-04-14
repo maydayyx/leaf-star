@@ -1,4 +1,4 @@
-//  如果本地存储中有语言，则优先使用本地存储中的语言实现语言持久化 默认为简体中文
+//  如果本地存储中有设置的语言，则优先使用本地存储中的语言实现语言持久化 默认为简体中文
 const lang = () => {
   if(process.client)  return localStorage.getItem('lang') || 'zh_CN'
 }

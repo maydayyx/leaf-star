@@ -17,7 +17,7 @@
       <p>Copyright@小叶 © 2024 - All right reserved</p>
     </aside>
     <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-      <LazyNuxtLink
+      <NuxtLink
         to="https://space.bilibili.com/394058495?spm_id_from=333.1007.0.0"
         target="_blank"
       >
@@ -36,8 +36,8 @@
             d="M3 10a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4zm5-7l2 3m6-3l-2 3m-5 7v-2m6 0v2"
           />
         </svg>
-      </LazyNuxtLink>
-      <a ref="copyButton">
+      </NuxtLink>
+      <a ref="copyButton" class="cursor-pointer">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

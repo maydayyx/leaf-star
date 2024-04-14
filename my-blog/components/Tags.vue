@@ -71,17 +71,17 @@
                 data-sveltekit-reload=""
                 href="/blog/tag/tailwind-css"
                 class="false"
-                >Tailwind CSS</a
+                >CSS</a
               >
             </li>
             <li>
               <a data-sveltekit-reload="" href="/blog/tag/daisyui" class="false"
-                >daisyUI</a
+                >Vue</a
               >
             </li>
             <li>
               <a data-sveltekit-reload="" href="/blog/tag/colors" class="false"
-                >Colors</a
+                >music</a
               >
             </li>
             <li>
@@ -89,7 +89,7 @@
                 data-sveltekit-reload=""
                 href="/blog/tag/tailwind-ui"
                 class="false"
-                >Tailwind UI</a
+                >趣事</a
               >
             </li>
             <li>
@@ -97,12 +97,12 @@
                 data-sveltekit-reload=""
                 href="/blog/tag/component-library"
                 class="false"
-                >Component Library</a
+                >工具</a
               >
             </li>
             <li>
               <a data-sveltekit-reload="" href="/blog/tag/svelte" class="false"
-                >Svelte</a
+                >NodeJS</a
               >
             </li>
             <li>
@@ -110,12 +110,12 @@
                 data-sveltekit-reload=""
                 href="/blog/tag/headless-ui"
                 class="false"
-                >Headless UI</a
+                >ngrok</a
               >
             </li>
             <li>
               <a data-sveltekit-reload="" href="/blog/tag/next.js" class="false"
-                >Next.js</a
+                >Nuxt.js</a
               >
             </li>
             <li>
@@ -129,11 +129,6 @@
                 href="/blog/tag/javascript-frameworks"
                 class="false"
                 >JavaScript frameworks</a
-              >
-            </li>
-            <li>
-              <a data-sveltekit-reload="" href="/blog/tag/laravel" class="false"
-                >Laravel</a
               >
             </li>
           </ul>

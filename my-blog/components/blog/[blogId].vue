@@ -4,7 +4,7 @@
       <figure class="w-full">
         <img
           loading="lazy"
-          src="../../assets/img/avatar.jpg"
+          src="../../assets/img/blogbg.jpg"
           class="border-base-content bg-base-300 rounded-box border border-opacity-5"
           alt="How to make a bidirectional site using Tailwind CSS and daisyUI"
         />
