@@ -16,7 +16,8 @@ export default defineI18nConfig(() => ({
         TypeHere:'在这里输入',
         Share:'分享',
         Utils:'实用工具',
-        Copied:'邮箱复制成功.'
+        Copied:'邮箱复制成功.',
+        GoBack:"返回首页"
       },
       zh_HK:{
         Home:'首頁',
@@ -28,7 +29,8 @@ export default defineI18nConfig(() => ({
         TypeHere:'在這裡輸入',
         Share:'分享',
         Utils:'實用工具',
-        Copied:'郵箱複製成功了.'
+        Copied:'郵箱複製成功了.',
+        GoBack:"返回首頁"
       },
       en_GB: {
         Home: 'Home',
@@ -40,7 +42,8 @@ export default defineI18nConfig(() => ({
         TypeHere:'Type Here',
         Share:'Share',
         Utils:'Utils',
-        Copied:'My email has been copied.'
+        Copied:'My email has been copied.',
+        GoBack:"Go Back"
       }
     }
   }))
