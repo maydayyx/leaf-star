@@ -68,17 +68,18 @@
 <script setup>
 import Clipboard from "clipboard";
 
-//i8n国际化
-const { locale, setLocale } = useI18n();
-
+// 获取复制按钮的实例
 const copyButton = ref(null);
+// 控制显示复制成功的信息
 const showCopySuccessMes = ref(false);
 
 onMounted(() => {
+  // 设置要复制的信息
   const clipboard = new Clipboard(copyButton.value, {
     text: () => "13319139772@163.com",
   });
 
+  // 复制成功的回调
   clipboard.on("success", function (e) {
     console.log("复制成功！");
     showCopySuccessMes.value = !showCopySuccessMes.value;
@@ -87,6 +88,7 @@ onMounted(() => {
     e.clearSelection();
   });
 
+  //复制失败的回调
   clipboard.on("error", function (e) {
     console.log("复制失败：", e);
   });
