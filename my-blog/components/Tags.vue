@@ -137,7 +137,5 @@
 </template>
 
 <script setup>
-//i8n国际化
-  const {locale,setLocale} = useI18n()
-  const bolgId = 1
+
 </script>
