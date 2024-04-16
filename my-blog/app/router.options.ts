@@ -39,6 +39,12 @@ export default <RouterConfig>{
       name:'notFound',
       path:'/:pathMatch(.*)*',
       component:()=>import('../pages/404.vue')
-    }
+    },
+    {
+      name:'utils',
+      path:'/utils',
+      component:()=>import('../pages/share/utils/index.vue')
+    },
   ],
-};
+}
+

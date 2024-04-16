@@ -60,14 +60,14 @@
           }}</NuxtLink>
           <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">
-              {{ $t("Share") }}
+                {{ $t("Share") }}
             </div>
             <ul
               tabindex="0"
               class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
             >
               <li>
-                <a>{{ $t("Utils") }}</a>
+                <NuxtLink to="/utils">{{ $t("Utils") }}</NuxtLink>
               </li>
             </ul>
           </div>
