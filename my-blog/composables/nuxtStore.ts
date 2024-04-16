@@ -1,7 +1,9 @@
+import {default_Theme} from '@/config/index'
+
 export const useNuxtStore = defineStore('nuxtStore', {
   state: () => {
     return {
-      theme: 'nord',
+      theme: default_Theme,
     };
   },
   actions: {

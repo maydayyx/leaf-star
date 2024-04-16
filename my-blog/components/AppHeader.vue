@@ -5,7 +5,7 @@
     <div class="navbar-start hidden sm:block">
       <div class="avatar">
         <div class="w-10 h-auto rounded-full ml-10">
-          <img src="../assets/img/avatar.jpg" />
+          <img src=../assets/img/avatar.jpg />
         </div>
       </div>
     </div>
@@ -194,7 +194,7 @@
         </svg>
       </label>
       <!-- github图标 -->
-      <nuxt-link to="https://github.com/maydayyx" target="_blank" rel="noopener"
+      <nuxt-link :to="my_Github" target="_blank" rel="noopener"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           class="w-8 h-11 ml-3"
@@ -210,6 +210,8 @@
 </template>
 
 <script setup>
+import {my_Github,default_Avatar } from '@/config/index'
+
 //获取nuxt仓库
 const nuxtStore = useNuxtStore();
 

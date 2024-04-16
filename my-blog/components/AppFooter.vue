@@ -1,6 +1,6 @@
 <template>
-    <footer class="flex justify-around  footer items-center bg-base-100 text-neutral-content">
-    <aside class="flex items-start ">
+    <footer class="flex justify-around mb-0 sm:mb-10  footer items-center bg-base-100 text-neutral-content">
+    <aside class="flex items-center ">
       <svg
         width="36"
         height="36"
@@ -18,7 +18,7 @@
     </aside>
     <nav class="flex items-end justify-end">
       <NuxtLink
-        to="https://space.bilibili.com/394058495?spm_id_from=333.1007.0.0"
+        :to="my_BiliBili"
         target="_blank"
       >
         <svg
@@ -66,6 +66,8 @@
 </template>
 
 <script setup>
+import {my_BiliBili,my_Email} from '@/config/index'
+
 import Clipboard from "clipboard";
 
 // 获取复制按钮的实例
@@ -76,7 +78,7 @@ const showCopySuccessMes = ref(false);
 onMounted(() => {
   // 设置要复制的信息
   const clipboard = new Clipboard(copyButton.value, {
-    text: () => "13319139772@163.com",
+    text: () => my_Email,
   });
 
   // 复制成功的回调

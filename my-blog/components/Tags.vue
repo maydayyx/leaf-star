@@ -3,12 +3,13 @@
 <div class="sticky top-32 sm:max-w-none">
           <div class="mb-8 px-6">
             <div class="flex items-center gap-3">
-              <a href="/blog" class="inline-block hover:opacity-80"
+              <NuxtLink class="inline-block hover:opacity-80"
                 ><h1
                   class="font-title text-base-content text-xl font-extrabold"
                 >
-                  leafStar blog
-                </h1></a
+                  {{ blog_Name }}
+                </h1>
+                </NuxtLink
               >
               <div class="tooltip tooltip-right" >
                 <a
@@ -137,5 +138,5 @@
 </template>
 
 <script setup>
-
+import {blog_Name} from '@/config/index'
 </script>
