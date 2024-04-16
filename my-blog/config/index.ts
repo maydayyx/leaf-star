@@ -7,7 +7,8 @@ export const blog_Name = 'leafStar Blog'
 export const default_Theme = 'nord'
 
 // 默认的头像
-export const default_Avatar = `../assets/img/avatar.jpg`
+import avatar from '../assets/img/avatar.jpg'
+export const default_Avatar = avatar
 
 // 默认的语言
 export const default_Lang = 'zh_CN'

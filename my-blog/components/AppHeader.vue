@@ -5,7 +5,7 @@
     <div class="navbar-start hidden sm:block">
       <div class="avatar">
         <div class="w-10 h-auto rounded-full ml-10">
-          <img :src="`${default_Avatar}`" />
+          <img :src=default_Avatar />
         </div>
       </div>
     </div>
@@ -250,7 +250,7 @@ const hiddenSearchBox = () => {
   showSearchBox.value=!showSearchBox
 }
 
-//i18n国际化
+//i18n
 const { locale, setLocale } = useI18n();
 
 //监视语言的切换
