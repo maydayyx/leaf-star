@@ -5,7 +5,7 @@
     <div class="navbar-start hidden sm:block">
       <div class="avatar">
         <div class="w-10 h-auto rounded-full ml-10">
-          <img src=../assets/img/avatar.jpg />
+          <img :src="`${default_Avatar}`" />
         </div>
       </div>
     </div>
