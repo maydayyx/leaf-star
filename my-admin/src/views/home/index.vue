@@ -9,7 +9,5 @@
 </script>
 
 <style lang="scss" scoped>
-.home {
-    color: $default-color;
-}
+
 </style>
