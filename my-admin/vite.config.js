@@ -17,6 +17,7 @@ export default defineConfig({
     vue(),
     VueDevTools(),
     AutoImport({
+      imports: ['vue'],
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
@@ -26,16 +27,16 @@ export default defineConfig({
     }),
     Components({
       resolvers: [
-        ElementPlusResolver(),
         IconsResolver({
           enabledCollections: ['ep']
-        })
+        }),
+        ElementPlusResolver()
       ]
     }),
     ElementPlus({}),
     Icons({
-      autoInstall: true,
-  })
+      autoInstall: true
+    })
   ],
   resolve: {
     alias: {

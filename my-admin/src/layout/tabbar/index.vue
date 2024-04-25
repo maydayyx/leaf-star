@@ -9,9 +9,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import BreadCrumb from './breadcrumb/index.vue'
 import Settings from './settings/index.vue'
+
 </script>
 
 <style lang="scss" scoped>
@@ -25,6 +26,11 @@ import Settings from './settings/index.vue'
   .tabbar_left {
     display: flex;
     align-items: center;
+  }
+  .tabbar_right {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 </style>
