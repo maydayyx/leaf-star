@@ -35,7 +35,8 @@
           </el-menu-item>
         </template>
         <!-- 有子路由且大于一的情况 -->
-        <el-sub-menu v-if="item.children && item.children.length > 1" :index="item.path">
+        <el-sub-menu
+         v-if="item.children && item.children.length > 1" :index="item.path">
             <template #title>
               <el-icon>
                 <component :is=item.meta.icon />
@@ -52,12 +53,12 @@ defineProps(['menuList'])
 
 // 路由对象
 import { useRouter } from 'vue-router';
-const $router = useRouter()
+const $r = useRouter()
 
 // 跳转到响应的页面
 const getRoute = ((vc)=>{
   const {index} = vc
-  $router.push(index)
+  $r.push(index)
 })
 </script>
 
@@ -65,5 +66,11 @@ const getRoute = ((vc)=>{
 .el-menu-item,.el-sub-menu {
   position: relative;
   right: 9px;
+}
+::v-deep.el-menu-item:hover {
+	background: none
+}
+ .el-sub-menu:hover {
+  --el-menu-hover-bg-color:none;
 }
 </style>

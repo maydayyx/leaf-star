@@ -5,10 +5,10 @@
         <Logo :fold="fold"/>
         <el-scrollbar class="scroll_bar">
           <el-menu
-            :default-active="$r.path"
-            background-color='#ccc'
-            text-color="white"
-            active-text-color="black"
+            :default-active="$R.path"
+            :background-color="$nextTick(()=>theme==='light' ? '#f5f5f5' : '#1c1c1c')"
+            :text-color="$nextTick(()=>theme==='light' ? '#000' : '#1c1c1c')"
+            active-text-color="purple"
             :collapse="fold ? true : false"
           >
             <Menu  :menuList="routes"/>
@@ -16,7 +16,7 @@
         </el-scrollbar>
       </div>
       <div class="row">
-        <div class="layout_tabbar" :class="{ tabbar_fold: fold }">
+        <div class="layout_Ghost of Tsushimatabbar" :class="{ tabbar_fold: fold }">
           <Tabbar />
         </div>
         <div class="layout_main" :class="{ main_fold: fold }">
@@ -28,6 +28,10 @@
 </template>
 
 <script setup>
+// 获取当前主题的颜色
+import { getTheme } from '@/utils/Token'
+const theme = getTheme()
+// 引入子组件
 import Main from './main/index.vue'
 import Tabbar from './tabbar/index.vue'
 import Logo from './logo/index.vue'
@@ -39,9 +43,9 @@ import { storeToRefs } from 'pinia'
 import useLayoutSettingStore from '@/stores/modules/setting'
 // 获取是否折叠的数据
 const { fold } = storeToRefs(useLayoutSettingStore())
-
-import { useRouter } from 'vue-router'
-const $r = useRouter()
+// 获取路由实例
+import { useRoute } from 'vue-router'
+const $R = useRoute()
 
 </script>
 )
@@ -55,7 +59,7 @@ const $r = useRouter()
   padding: 50px;
   width: 100vw;
   height: 100vh;
-
+  background:linear-gradient(3deg, rgb(135, 129, 129) 0%, rgb(232, 226, 226) 100%);
   .column {
     display: flex;
     flex-direction: row;
@@ -114,5 +118,10 @@ const $r = useRouter()
     }
     color: #1c1c1c;
   }
+}
+
+::v-deep.el-menu-item:hover {
+	color:white!important;
+	background: #1890FF!important;
 }
 </style>

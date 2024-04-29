@@ -25,7 +25,7 @@
 
 <script setup>
 import { onMounted } from 'vue';
-
+import {setTheme,getTheme} from '@/utils/Token'
 /* 一些图标 */
 const Refresh = IconEpRefresh
 const fullScreen = IconEpFullScreen
@@ -44,7 +44,8 @@ const Screen = () => {
 
 onMounted(()=>{
   let themeContainer = document.querySelector('.column')
-  const theme = localStorage.getItem('theme')
+  // const theme = localStorage.getItem('theme')
+  const theme = getTheme()
   if(theme) {
     themeContainer.classList.add(theme)
   }else {
@@ -64,7 +65,8 @@ const changeTheme = () => {
   // 取反当前主题，得到新的主题
   const newTheme = currentTheme === 'light' ? 'dark' : 'light'
   // 本地存储
-  localStorage.setItem('theme',newTheme)
+  // localStorage.setItem('theme',newTheme)
+  setTheme(newTheme)
   // 移除当前主题类名，添加新的主题类名
   themeContainer.classList.remove(currentTheme)
   themeContainer.classList.add(newTheme)

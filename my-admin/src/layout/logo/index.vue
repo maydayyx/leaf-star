@@ -1,6 +1,6 @@
 <template>
     <div class="Logo">
-        <img src="https://img0.baidu.com/it/u=4239395544,1664493633&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1713459600&t=0fa57df629c1824c52380f4443acace1" alt="">
+        <img src="../../assets/avatar.jpg" alt="">
         <p v-show="!fold">My_Blog</p>
     </div>
 </template>

@@ -36,12 +36,12 @@ export default defineConfig({
     ElementPlus({}),
     Icons({
       autoInstall: true
-    })
+    }),
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+    },
   },
   css: {
     preprocessorOptions: {
@@ -49,5 +49,5 @@ export default defineConfig({
         additionalData: `@import "./src/style/mixin.scss";` // 此处全局的scss文件
       }
     }
-  }
+  },
 })
