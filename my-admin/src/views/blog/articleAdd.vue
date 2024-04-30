@@ -2,11 +2,11 @@
   <el-page-header title="博客管理" icon="" content="新增文章"></el-page-header>
   <el-form label-width="120px" :model="articleForm">
     <el-form-item label="文章标题:" prop="title">
-      <el-input placeholder="" v-model="articleForm.title" size="mini"></el-input>
+      <el-input placeholder="" v-model="articleForm.title" size="mimi"></el-input>
     </el-form-item>
     <el-form-item label="文章内容:" prop="title">
       <Editor v-model="articleForm.content" />
-    </el-form-item>
+    </el-form-item> 
     <el-form-item label="标  签:" prop="tag">
       <el-select style="width: 100%" class="m-2" v-model="articleForm.tag">
         <el-option v-for="item in tags" :key="item.value" :label="item.label" :value="item.value"/>
@@ -22,7 +22,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import Upload from '@/components/upload/index.vue'
 import Editor from '@/components/editor/index.vue'
 

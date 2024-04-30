@@ -6,6 +6,14 @@ export const getTheme = () => {
   return localStorage.getItem("theme");
 };
 
-// export const removeToken = () => {
-//   localStorage.removeItem("theme");
-// };
+export const Get_Token = () => {
+  return localStorage.getItem("token");
+}
+
+export const Set_Token = (token) => {
+  localStorage.setItem("token", token)
+}
+
+export const Remove_Token = () => {
+  localStorage.removeItem("token")
+}

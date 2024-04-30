@@ -10,22 +10,28 @@
   <el-avatar style="width: 30px; height: 25px" :src="avatar" />
   <el-dropdown>
     <span class="el-dropdown-link">
-      Mayday
+      {{ username }}
       <el-icon class="el-icon--right">
         <i-ep-arrow-down />
       </el-icon>
     </span>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item>退出登陆</el-dropdown-item>
+        <el-dropdown-item @click="handleLogout">退出登陆</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import {setTheme,getTheme} from '@/utils/Token'
+import { onMounted } from 'vue'
+import { setTheme, getTheme } from '@/utils/Token'
+import { storeToRefs } from 'pinia'
+import useUserStore from '@/stores/modules/user'
+const userStore = useUserStore()
+const { username } = storeToRefs(userStore)
+import { useRouter } from 'vue-router'
+const $r = useRouter()
 /* 一些图标 */
 const Refresh = IconEpRefresh
 const fullScreen = IconEpFullScreen
@@ -41,18 +47,16 @@ const Screen = () => {
   }
 }
 
-
-onMounted(()=>{
+onMounted(() => {
   let themeContainer = document.querySelector('.column')
   // const theme = localStorage.getItem('theme')
   const theme = getTheme()
-  if(theme) {
+  if (theme) {
     themeContainer.classList.add(theme)
-  }else {
+  } else {
     themeContainer.classList.add('light')
   }
 })
-
 
 // 主题改变时切换相应图标的状态
 const ThemeIconChange = ref(true)
@@ -72,15 +76,21 @@ const changeTheme = () => {
   themeContainer.classList.add(newTheme)
 }
 
+// 退出登录
+const handleLogout = async () => {
+  await userStore.logout()
+  $r.push('/login')
+  ElMessage.success('退出成功')
+}
+
 const avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
 </script>
 
 <style lang="scss" scoped>
 .el-avatar {
-  margin:0 10px;
+  margin: 0 10px;
 }
 .el-button {
   margin-top: 1px;
 }
-
 </style>

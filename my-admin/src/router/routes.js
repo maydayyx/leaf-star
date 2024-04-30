@@ -1,4 +1,4 @@
-const Pointer = 'i-ep-Refresh'
+
 export default [
   // 登录
   {
