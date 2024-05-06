@@ -16,4 +16,12 @@
  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useBlogStore } from '#imports';
+const blogStore = useBlogStore();
+watchEffect(async ()=>{
+  console.log('页面挂载-发请求');
+  const res = await $fetch('/webapi/articleList')
+  blogStore.artcileList = res.data
+})
+</script>

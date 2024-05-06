@@ -2,9 +2,9 @@
   <div class="mx-auto w-full max-w-2xl">
     <div class="prose prose-sm md:prose-base mx-auto mb-20">
       <figure class="w-full">
-        <img
+        <NuxtImg
           loading="lazy"
-          src="../../assets/img/blogbg.jpg"
+          :src="`http://localhost:3000/${cover}`"
           class="border-base-content bg-base-300 rounded-box border border-opacity-5"
           alt="How to make a bidirectional site using Tailwind CSS and daisyUI"
         />
@@ -12,27 +12,45 @@
       <div>
         <div class="text-base-content/60 mb-2 text-xs">
           <!-- 发布时间和地点 -->
-          <span title="1 Mar 2024" class="italic">2024-4-16&nbsp;&nbsp;</span>
-          <span>陕西西安</span>
+          <span title="1 Mar 2024" class="italic">{{ updateTime }}&nbsp;&nbsp;</span>
+          <span>陕西 西安</span>
         </div>
         <!-- 文章标题 -->
-        <h2 >How to make a bidirectional site using Tailwind CSS and daisyUI</h2>
+        <h2>{{ title }}</h2>
         <!-- 文章内容 -->
-        <p>
-          Learn how to use CSS logical properties to make a bidirectional
-          website using Tailwind CSS and daisyUI
-        </p>
+        <div v-html="content">
+        </div>
       </div>
       <div class="mb-2 flex flex-wrap gap-2 text-xs opacity-60">
         <span data-svelte-h="svelte-1j0hbyd">Tags:</span>
-        <a class="link" href="/blog/tag/daisyui">daisyUI </a>
+        <NuxtLink class="link" href="/blog/tag/daisyui">{{tags}}</NuxtLink>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-const route = useRoute();
+// 获取路由参数
+const $R = useRoute();
+// 拿到文章的ID
+const { blogId } = $R.params;
+// 存储文章内容
+let cover = ref();
+let content = ref()
+let title = ref()
+let updateTime = ref()
+let tags = ref()
+onMounted(async () => {
+  // 根据文章的ID获取文章内容
+    const res = await $fetch(`/webapi/article/${blogId}`);
+    cover.value = res.data.cover;
+    content.value = res.data.content;
+    title.value = res.data.title;
+    updateTime.value = res.data.updateTime;
+    tags.value = res.data.tags
+});
+onBeforeUnmount(() => {
+});
 </script>
 
 <style lang="scss" scoped></style>

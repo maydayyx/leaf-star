@@ -17,7 +17,7 @@ const UserService = {
     // token 生成
     const secretKey = "leafstar";
     //   token 有效期
-    const expiresIn = "15s";
+    const expiresIn = "7d";
     //  传递的信息
     const playload = { userId: hasUser._id };
     const token = jwt.sign(playload, secretKey, { expiresIn });

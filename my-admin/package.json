@@ -14,6 +14,7 @@
     "@types/vue": "^2.0.0",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^1.6.8",
+    "dayjs": "^1.11.11",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "ts": "^0.2.2",

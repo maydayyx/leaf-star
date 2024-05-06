@@ -11,7 +11,7 @@ export default <RouterConfig>{
         {
             name:'home',
             path:'/home',
-            component:()=>import('../components/blog/BlogList.vue')
+            component:()=>import('../components/blog/BlogList.vue'),
         },
         {
             name:'blogId',
@@ -47,4 +47,3 @@ export default <RouterConfig>{
     },
   ],
 }
-

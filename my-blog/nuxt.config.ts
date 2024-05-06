@@ -22,4 +22,21 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxt/image",
   ],
+  devServer:{
+    port:8080
+  },
+  nitro:{
+    devProxy:{
+      '/webapi':{
+        target:'http://localhost:3000/webapi',
+        changeOrigin:true,
+        prependPath:true
+      }
+    },
+    routeRules: {
+      '/webapi/**': {
+        proxy: 'http://localhost:3000/webapi'
+      }
+    }
+  },
 });

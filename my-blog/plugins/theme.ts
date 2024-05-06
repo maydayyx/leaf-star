@@ -1,5 +1,5 @@
-import pinia from '@/composables/pinia'
-import { useNuxtStore } from "#imports";
+import pinia from '~/composables/pinia'
+import { useNuxtStore } from "~/composables/nuxtStore";
 const nuxtStore = useNuxtStore(pinia)
 
 

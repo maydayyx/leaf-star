@@ -1,6 +1,6 @@
-import {default_Theme} from '@/config/index'
+import { default_Theme } from "@/config/index";
 
-export const useNuxtStore = defineStore('nuxtStore', {
+export const useNuxtStore = defineStore("nuxtStore", {
   state: () => {
     return {
       theme: default_Theme,
@@ -16,21 +16,21 @@ export const useNuxtStore = defineStore('nuxtStore', {
       // 确保代码旨在浏览器中执行
       if (process.client) {
         // 从本地存储中获取theme
-        const storedTheme = localStorage.getItem('Theme');
+        const storedTheme = localStorage.getItem("Theme");
         // 确保从本地得到了theme值
         if (storedTheme) {
           // 更新state
           this.theme = storedTheme;
           // 实现主题的持久化
-          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute("data-theme", this.theme);
         }
       }
     },
     // 切换主题的方法
     setTheme() {
-      this.theme = this.theme === 'nord' ? 'dim' : 'nord';
-      document.documentElement.setAttribute('data-theme', this.theme);
-      localStorage.setItem('Theme', this.theme);
+      this.theme = this.theme === "nord" ? "dim" : "nord";
+      document.documentElement.setAttribute("data-theme", this.theme);
+      localStorage.setItem("Theme", this.theme);
     },
   },
 });

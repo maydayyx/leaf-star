@@ -1,21 +1,36 @@
 <template>
   <el-page-header title="博客管理" icon="" content="文章列表"></el-page-header>
-  <el-table stripe>
-    <el-table-column label="标题" align="center"></el-table-column>
-    <el-table-column label="标签" align="center"></el-table-column>
-    <el-table-column label="更新时间" align="center"> </el-table-column>
+  <el-table :data="ArticleList" stripe>
+    <el-table-column prop="title" label="标题" align="center"></el-table-column>
+    <el-table-column prop="tags" label="标签" align="center"></el-table-column>
+    <el-table-column prop="updateTime" label="更新时间" align="center"> </el-table-column>
     <el-table-column label="是否发布" align="center">
         <template #default="scope">
-            <el-switch v-model="sw"  :active-value="1" inactive-value="0" @change="">
+            <el-switch v-model="scope.row.isPublish"  :active-value="1" inactive-value="0" @change="">
             </el-switch>
         </template>
     </el-table-column>
-    <el-table-column label="操作" align="center"> </el-table-column>
+    <el-table-column label="操作" align="center">
+      <el-button type="primary" title="预览" size="small" circle @click="">
+        <el-icon>
+          <i-ep-plus/>
+        </el-icon>
+      </el-button>
+      <el-button type="primary" title="预览" size="small" circle @click="" :icon="i-ep-plus">
+      </el-button>
+    </el-table-column>
   </el-table>
 </template>
 
 <script setup>
+import useArticleStore from '@/stores/modules/article';
+const ArticleStore = useArticleStore()
+const { ArticleList } = ArticleStore
+
 const sw = ref(true)
+onMounted(async ()=> {
+ await ArticleStore.getArticleList()
+})
 </script>
 
 <style lang="scss" scoped>
