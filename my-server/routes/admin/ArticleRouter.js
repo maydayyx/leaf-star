@@ -7,5 +7,8 @@ const ArticleController = require('../../controller/admin/ArticleController')
 
 
 ArticleRouter.post('/adminapi/article/addArticle',upload.single('file'),ArticleController.add)
-ArticleRouter.get('/adminapi/article/getArticleList',ArticleController.getArticleList)
+ArticleRouter.get('/adminapi/article/ArticleList',ArticleController.getArticleList)
+ArticleRouter.get('/adminapi/article/ArticleList/:id',ArticleController.getArticleList)
+ArticleRouter.put('/adminapi/article/publish',ArticleController.publish)
+ArticleRouter.delete('/adminapi/article/ArticleList/:id',ArticleController.deleteList)
 module.exports = ArticleRouter;

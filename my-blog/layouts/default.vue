@@ -19,8 +19,11 @@
 <script setup>
 import { useBlogStore } from '#imports';
 const blogStore = useBlogStore();
-watchEffect(async ()=>{
-  console.log('页面挂载-发请求');
+/* 
+  在页面挂载之前发请求获取文章列表
+*/
+onMounted(async ()=>{
+  // 发请求并存储数据到仓库
   const res = await $fetch('/webapi/articleList')
   blogStore.artcileList = res.data
 })

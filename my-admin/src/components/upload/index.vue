@@ -26,7 +26,7 @@
   const props = defineProps({
       avatar:String
   })
-  const uploadUrl = computed(()=>props.avatar.includes('blob')?props.avatar:'http://127.0.0.1:5173'+props.avatar)
+  const uploadUrl = computed(()=>props.avatar.includes('blob')?props.avatar:'http://127.0.0.1:3000'+props.avatar)
   </script>
   
   <style scoped>

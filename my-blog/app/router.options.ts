@@ -41,6 +41,11 @@ export default <RouterConfig>{
       component:()=>import('../pages/404.vue')
     },
     {
+      name:'share',
+      path:'/share',
+      redirect:'/utils'
+    },
+    {
       name:'utils',
       path:'/utils',
       component:()=>import('../pages/share/utils/index.vue')

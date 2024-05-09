@@ -3,7 +3,9 @@
 </template>
 
 <script setup>
-    
+useHead({
+    title:'utils'
+})  
 </script>
 
 <style scoped>

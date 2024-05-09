@@ -14,10 +14,17 @@ const ArticleService = {
     },
     getArticleList:async ({_id}) => {
         if(_id){
-            return await ArticleModel.find({_id})
+            return await ArticleModel.findOne({_id})
         }else {
             return await ArticleModel.find({}).sort({updateTime:-1})
         }
+    },
+    publish:async ({_id,isPublish,editTime}) => {
+        console.log(isPublish)
+        return await ArticleModel.updateOne({_id},{isPublish,editTime})
+    },
+    deleteList:async ({id:_id}) => {
+        return await ArticleModel.deleteOne({_id})
     }
 }
 

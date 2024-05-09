@@ -29,4 +29,8 @@ const getList = async () => {
   // result.value = data.value
   blogStore.getArticleList();
 };
+
+useHead({
+  title:'About'
+})
 </script>

@@ -11,9 +11,37 @@ export const reqAddArticle = (data) => {
     })
 }
 
-export const reqGetArticleList = () => {
+export const reqGetArticleList = (_id) => {
+
+    if(_id){
+        return $fecth({
+            method: 'get',
+            url: `/article/ArticleList/${_id}`,
+        })
+    }else {
+        return $fecth({
+            method: 'get',
+            url: `/article/ArticleList`,
+        })
+    }
+   
+}
+
+
+export const reqPublish = (_id,isPublish) => {
     return $fecth({
-        method: 'get',
-        url: '/article/getArticleList',
+        method: 'put',
+        url: '/article/publish',
+        data:{
+            _id,
+            isPublish
+        }
+    })
+}
+
+export const reqDelArticle = (_id) => {
+    return $fecth({
+        method: 'delete',
+        url: `/article/getArticleList/${_id}`,
     })
 }

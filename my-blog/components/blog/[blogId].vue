@@ -12,18 +12,19 @@
       <div>
         <div class="text-base-content/60 mb-2 text-xs">
           <!-- 发布时间和地点 -->
-          <span title="1 Mar 2024" class="italic">{{ updateTime }}&nbsp;&nbsp;</span>
+          <span title="1 Mar 2024" class="italic"
+            >{{ updateTime }}&nbsp;&nbsp;</span
+          >
           <span>陕西 西安</span>
         </div>
         <!-- 文章标题 -->
         <h2>{{ title }}</h2>
         <!-- 文章内容 -->
-        <div v-html="content">
-        </div>
+        <div v-html="content"></div>
       </div>
       <div class="mb-2 flex flex-wrap gap-2 text-xs opacity-60">
         <span data-svelte-h="svelte-1j0hbyd">Tags:</span>
-        <NuxtLink class="link" href="/blog/tag/daisyui">{{tags}}</NuxtLink>
+        <NuxtLink class="link" href="/blog/tag/daisyui">{{ tags }}</NuxtLink>
       </div>
     </div>
   </div>
@@ -36,20 +37,26 @@ const $R = useRoute();
 const { blogId } = $R.params;
 // 存储文章内容
 let cover = ref();
-let content = ref()
-let title = ref()
-let updateTime = ref()
-let tags = ref()
+let content = ref();
+let title = ref();
+let updateTime = ref();
+let tags = ref();
 onMounted(async () => {
   // 根据文章的ID获取文章内容
-    const res = await $fetch(`/webapi/article/${blogId}`);
-    cover.value = res.data.cover;
-    content.value = res.data.content;
-    title.value = res.data.title;
-    updateTime.value = res.data.updateTime;
-    tags.value = res.data.tags
+  const res = await $fetch(`/webapi/article/${blogId}`);
+  cover.value = res.data.cover;
+  content.value = res.data.content;
+  title.value = res.data.title;
+  updateTime.value = res.data.updateTime;
+  tags.value = res.data.tags;
 });
-onBeforeUnmount(() => {
+
+useHead({
+  /* 
+  如果直接写title:title.value的话,无法自动更新
+  用()=>title.value的话,可以动态的更新标题
+  */
+  title: ()=>title.value,
 });
 </script>
 

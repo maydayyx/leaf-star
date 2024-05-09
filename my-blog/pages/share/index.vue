@@ -3,7 +3,9 @@
 </template>
 
 <script setup>
-    
+useHead({
+  title:'Share'
+})    
 </script>
 
 <style scoped>

@@ -9,6 +9,7 @@
         </div>
       </div>
     </div>
+    <!-- 小屏下的导航栏-汉堡菜单 -->
     <div class="navbar-start block sm:hidden z-60">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
@@ -49,6 +50,7 @@
         </ul>
       </div>
     </div>
+    <!-- 大屏下的导航栏 -->
     <div class="navbar-center hidden sm:block">
       <div class="flex justify-end flex-1 px-2">
         <div class="flex items-stretch">

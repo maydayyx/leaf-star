@@ -7,3 +7,8 @@ export const CurTime = () => {
   // 返回值
   return dayjs(currentTime).format('YYYY-MM-DD HH:mm:ss')
 }
+
+
+export const formatTime = (time) => {
+  return dayjs(time).format('YYYY-MM-DD HH:mm')
+}
