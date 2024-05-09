@@ -38,8 +38,8 @@ const { ArticleList } = storeToRefs(ArticleStore)
 //   获取路由信息携带的文章ID
 import { useRoute } from 'vue-router'
 const $R = useRoute()
-// 引入根据id查询文章的请求
-import { reqGetArticleList } from '@/api/article'
+// 引入根据id查询文章的请求 更新文章的接口
+import { reqGetArticleList,reqUpdateArticle } from '@/api/article'
 // 显示数据并收集修改后的数据
 const articleForm = reactive({
   title: '',
@@ -108,7 +108,9 @@ const submit = () => {
   formRef.value.validate(async (valid) => {
     if (valid) {
       // 发送修改文章的请求
-        
+      await reqUpdateArticle(upload(articleForm))
+      ElMessage.success('修改成功')
+      // 跳转到文章列表
       $r.push('/blog/list')
     }
   })

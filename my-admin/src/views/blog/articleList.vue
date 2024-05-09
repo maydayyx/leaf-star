@@ -1,6 +1,6 @@
 <template>
   <el-page-header title="博客管理" icon="" content="文章列表"></el-page-header>
-  <el-table :data="ArticleList">
+  <el-table :data="ArticleList" >
     <el-table-column prop="title" label="标题" align="center"></el-table-column>
     <el-table-column prop="tags" label="标签" align="center"></el-table-column>
     <el-table-column prop="updateTime" label="更新时间" align="center"> </el-table-column>
@@ -114,7 +114,19 @@ const handlePreview = (article) => {
 
 // 删除文章
 const handleDel = async (article) => {
-  await ArticleStore.delArticle(article._id)
+  ElMessageBox.confirm("确认要删除吗?", "提示", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    icon: "delete",
+    type: "warning",
+  })
+    .then(async () => {
+      await ArticleStore.delArticle(article._id)
+    })
+    .catch(() => {
+      ElMessage.info("操作取消");
+    });
+
 }
 
 // 修改文章

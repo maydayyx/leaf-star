@@ -6,9 +6,10 @@ const ArticleRouter = express.Router()
 const ArticleController = require('../../controller/admin/ArticleController')
 
 
-ArticleRouter.post('/adminapi/article/addArticle',upload.single('file'),ArticleController.add)
-ArticleRouter.get('/adminapi/article/ArticleList',ArticleController.getArticleList)
-ArticleRouter.get('/adminapi/article/ArticleList/:id',ArticleController.getArticleList)
-ArticleRouter.put('/adminapi/article/publish',ArticleController.publish)
-ArticleRouter.delete('/adminapi/article/ArticleList/:id',ArticleController.deleteList)
+ArticleRouter.post('/adminapi/article/addArticle',upload.single('file'),ArticleController.add) // 添加文章
+ArticleRouter.get('/adminapi/article/ArticleList',ArticleController.getArticleList) // 获取文章列表
+ArticleRouter.get('/adminapi/article/ArticleList/:id',ArticleController.getArticleList) // 获取文章
+ArticleRouter.put('/adminapi/article/publish',ArticleController.publish)    // 发布文章
+ArticleRouter.post('/adminapi/article/ArticleList',upload.single('file'),ArticleController.update) // 更新文章
+ArticleRouter.delete('/adminapi/article/ArticleList/:id',ArticleController.deleteList) // 删除文章
 module.exports = ArticleRouter;

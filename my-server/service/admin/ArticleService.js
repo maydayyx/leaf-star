@@ -1,3 +1,4 @@
+const { update } = require('../../controller/admin/ArticleController')
 const ArticleModel = require('../../models/article')
 const ArticleService = {
     add:async ({title,content,cover,updateTime,tags,isPublish,editTime,desc}) => {
@@ -22,6 +23,9 @@ const ArticleService = {
     publish:async ({_id,isPublish,editTime}) => {
         console.log(isPublish)
         return await ArticleModel.updateOne({_id},{isPublish,editTime})
+    },
+    update:async ({_id,title,content,tags,isPublish,editTime,cover}) => {
+        return await ArticleModel.updateOne({_id},{title,content,tags,isPublish,editTime,cover})
     },
     deleteList:async ({id:_id}) => {
         return await ArticleModel.deleteOne({_id})
