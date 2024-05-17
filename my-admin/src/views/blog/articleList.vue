@@ -1,8 +1,14 @@
 <template>
   <el-page-header title="博客管理" icon="" content="文章列表"></el-page-header>
-  <el-table :data="ArticleList" >
+  <el-table :data="ArticleList">
     <el-table-column prop="title" label="标题" align="center"></el-table-column>
-    <el-table-column prop="tags" label="标签" align="center"></el-table-column>
+    <el-table-column prop="tags" label="标签" align="center">
+      <template #default="scope">
+          <span v-for="(item,index) in scope.row.tags" :key="item._id">
+            {{ item.name }}
+          </span>
+      </template>
+    </el-table-column>
     <el-table-column prop="updateTime" label="更新时间" align="center"> </el-table-column>
     <el-table-column label="是否发布" align="center">
       <template #default="scope">
@@ -44,7 +50,6 @@
       </template>
     </el-table-column>
   </el-table>
-
   <!-- 预览文章弹出框 -->
   <el-dialog v-model="previewDialogVisible" center title="新闻预览" width="500" draggable>
     <div class="htmlContent">
@@ -73,7 +78,6 @@ const { ArticleList } = storeToRefs(ArticleStore)
 // 引入路由
 import { useRouter } from 'vue-router'
 const $r = useRouter()
-
 
 // 是否发布文章
 const pubChange = async (article) => {
@@ -114,19 +118,18 @@ const handlePreview = (article) => {
 
 // 删除文章
 const handleDel = async (article) => {
-  ElMessageBox.confirm("确认要删除吗?", "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    icon: "delete",
-    type: "warning",
+  ElMessageBox.confirm('确认要删除吗?', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    icon: 'delete',
+    type: 'warning'
   })
     .then(async () => {
       await ArticleStore.delArticle(article._id)
     })
     .catch(() => {
-      ElMessage.info("操作取消");
-    });
-
+      ElMessage.info('操作取消')
+    })
 }
 
 // 修改文章

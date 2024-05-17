@@ -32,7 +32,7 @@ let useUserStore = defineStore('User', {
       if (result.code == 200) {
         this.username = result.username
       } else {
-        ElMessage.error(result.message)
+        return Promise.reject(new Error('fail'))
       }
     },
     // 退出登录

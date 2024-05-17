@@ -91,30 +91,10 @@ export default [
         name: 'TagList',
         component: () => import('@/views/tag/tagList.vue'),
         meta: {
-          title: '标签列表',
+          title: '标签管理',
           icon: IconEpList
         }
       },
-      // tag新增
-      {
-        path: '/tag/add',
-        name: 'TagAdd',
-        component: () => import('@/views/tag/tagAdd.vue'),
-        meta: {
-          title: '新增标签',
-          icon: IconEpCirclePlus
-        }
-      },
-      // tag编辑
-      {
-        path: '/tag/edit',
-        name: 'TagEdit',
-        component: () => import('@/views/tag/tagEdit.vue'),
-        meta: {
-          title: '编辑标签',
-          hidden:true
-        }
-      }
     ]
   },
   // 404

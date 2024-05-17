@@ -12,7 +12,7 @@
     </el-form-item>
     <el-form-item label="标  签:" prop="tags">
       <el-select style="width: 100%" class="m-2" v-model="articleForm.tags">
-        <el-option v-for="item in tags" :key="item.value" :label="item.label" :value="item.value" />
+       <el-option v-for="item in tags" :key="item._id" :label="item.name" :value="item._id"></el-option>   
       </el-select>
     </el-form-item>
     <el-form-item label="背景图片:" prop="cover">
@@ -20,6 +20,7 @@
     </el-form-item>
     <el-form-item>
       <el-button type="primary" size="default" @click="submit">修改</el-button>
+      <el-button type="info" size="default" @click="cancel">取消</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -32,6 +33,7 @@ import UploadX from '@/components/upload/index.vue'
 import Editor from '@/components/editor/index.vue'
 import useArticleStore from '@/stores/modules/article'
 import { storeToRefs } from 'pinia'
+import { reqGetList } from '@/api/tag'
 const ArticleStore = useArticleStore()
 // 确保文章数据为响应式
 const { ArticleList } = storeToRefs(ArticleStore)
@@ -39,7 +41,8 @@ const { ArticleList } = storeToRefs(ArticleStore)
 import { useRoute } from 'vue-router'
 const $R = useRoute()
 // 引入根据id查询文章的请求 更新文章的接口
-import { reqGetArticleList,reqUpdateArticle } from '@/api/article'
+import { reqGetArticleList, reqUpdateArticle } from '@/api/article'
+
 // 显示数据并收集修改后的数据
 const articleForm = reactive({
   title: '',
@@ -52,31 +55,31 @@ const articleForm = reactive({
   updateTime: CurTime()
 })
 
+
+// 标签
+const tags = ref([])
+
 //   页面挂载回填文章数据
 onMounted(async () => {
   try {
-    // 传递给服务器文章的ID查询文章
     const res = await reqGetArticleList($R.params.id)
-    // 利用Object.assign合并对象
     Object.assign(articleForm, res.data)
-  } catch (error) {}
+
+    // 设置文章的标签
+    if (res.data.tags && res.data.tags.length > 0) {
+      articleForm.tags = res.data.tags[0]._id
+    } else {
+      articleForm.tags = null
+    }
+
+    // 总是获取标签列表
+    const result = await reqGetList()
+    tags.value = result.data
+  } catch (error) {
+    console.error('Error fetching data:', error)
+  }
 })
 
-// 标签
-const tags = [
-  {
-    label: '生活',
-    value: '1'
-  },
-  {
-    label: '编程',
-    value: '2'
-  },
-  {
-    label: '体育',
-    value: '3'
-  }
-]
 // 图片变化的回调
 const handleChange = (file) => {
   articleForm.cover = URL.createObjectURL(file)
@@ -114,6 +117,10 @@ const submit = () => {
       $r.push('/blog/list')
     }
   })
+}
+
+const cancel = () => {
+  $r.back()
 }
 </script>
 

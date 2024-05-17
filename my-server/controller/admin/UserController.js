@@ -4,6 +4,7 @@ const UserController = {
   register: async (req, res) => {
     // 拿到用户输入的昵称和密码
     const { username, password } = req.body;
+    console.log(username, password);
     try {
       const existingUser = await UserService.findUser(username);
       if (existingUser) {

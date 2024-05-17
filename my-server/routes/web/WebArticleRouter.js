@@ -5,6 +5,6 @@ const ArticleController = require('../../controller/web/ArticleController')
 
 WebArticleRouter.get('/webapi/articleList',ArticleController.getArticleList)
 WebArticleRouter.get('/webapi/article/:id',ArticleController.getArticle)
-
+WebArticleRouter.get('/webapi/articleListByTag/:id',ArticleController.getArticleListByTag)
 
 module.exports = WebArticleRouter

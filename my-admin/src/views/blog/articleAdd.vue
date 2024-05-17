@@ -12,7 +12,7 @@
     </el-form-item>
     <el-form-item label="标  签:" prop="tags">
       <el-select style="width: 100%" class="m-2" v-model="articleForm.tags">
-        <el-option v-for="item in tags" :key="item.value" :label="item.label" :value="item.value" />
+        <el-option  v-for="item in tags" :key="item._id" :label="item.name" :value="item._id" />
       </el-select>
     </el-form-item>
     <el-form-item label="背景图片:" prop="cover">
@@ -31,6 +31,7 @@ import upload from '@/utils/upload'
 import UploadX from '@/components/upload/index.vue'
 import Editor from '@/components/editor/index.vue'
 import { reqAddArticle } from '@/api/article/index'
+import { reqGetList } from '@/api/tag'
 // 收集数据，最终提交的数据
 const articleForm = reactive({
   title: '',
@@ -43,20 +44,14 @@ const articleForm = reactive({
   updateTime: CurTime()
 })
 
+onMounted(async()=>{
+  // 获取标签列表
+  const res = await reqGetList()
+  tags.push(...res.data)
+})
+
 // 标签
 const tags = [
-  {
-    label: '生活',
-    value: '1'
-  },
-  {
-    label: '编程',
-    value: '2'
-  },
-  {
-    label: '体育',
-    value: '3'
-  }
 ]
 // 图片变化的回调
 const handleChange = (file) => {

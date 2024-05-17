@@ -21,7 +21,6 @@
 
 <script setup>
 import useUserStore from '@/stores/modules/user'
-import { ElMessageBox } from 'element-plus';
 const userStore = useUserStore()
 import { useRouter,useRoute } from 'vue-router'
 const $r = useRouter()
@@ -39,7 +38,7 @@ const handleLogin = async () => {
   try {
     await userStore.userLogin(userForm)
     let redirect = $R.query.redirect
-    await $r.push(redirect || '/home')
+    await $r.push('/home')
     ElNotification.success({ message: "登录成功", title: "Hi~" });
     Object.assign(userForm, { username: '', password: '' })
   } catch (err) {

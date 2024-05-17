@@ -67,70 +67,19 @@
           </div>
           <ul class="menu menu-horizontal lg:menu-vertical lg:w-56">
             <li class="menu-title">{{$t('Tags')}}</li>
-            <li>
-              <a
+            <li  v-if="blogStore.tagList.length>0">
+              <NuxtLink
                 data-sveltekit-reload=""
-                href="/blog/tag/tailwind-css"
+                v-for="(tag,index) in blogStore.tagList"
+                :key="tag._id"
+                :to="`/blog/tag/${tag._id}`"
                 class="false"
-                >CSS</a
+                >{{ tag.name }}</NuxtLink
               >
             </li>
-            <li>
-              <a data-sveltekit-reload="" href="/blog/tag/daisyui" class="false"
-                >Vue</a
-              >
-            </li>
-            <li>
-              <a data-sveltekit-reload="" href="/blog/tag/colors" class="false"
-                >music</a
-              >
-            </li>
-            <li>
-              <a
-                data-sveltekit-reload=""
-                href="/blog/tag/tailwind-ui"
-                class="false"
-                >趣事</a
-              >
-            </li>
-            <li>
-              <a
-                data-sveltekit-reload=""
-                href="/blog/tag/component-library"
-                class="false"
-                >工具</a
-              >
-            </li>
-            <li>
-              <a data-sveltekit-reload="" href="/blog/tag/svelte" class="false"
-                >NodeJS</a
-              >
-            </li>
-            <li>
-              <a
-                data-sveltekit-reload=""
-                href="/blog/tag/headless-ui"
-                class="false"
-                >ngrok</a
-              >
-            </li>
-            <li>
-              <a data-sveltekit-reload="" href="/blog/tag/next.js" class="false"
-                >Nuxt.js</a
-              >
-            </li>
-            <li>
-              <a data-sveltekit-reload="" href="/blog/tag/react" class="false"
-                >React</a
-              >
-            </li>
-            <li>
-              <a
-                data-sveltekit-reload=""
-                href="/blog/tag/javascript-frameworks"
-                class="false"
-                >JavaScript frameworks</a
-              >
+            <li v-else > 
+              <a  class="skeleton mt-3">
+              </a>
             </li>
           </ul>
         </div>
@@ -139,4 +88,6 @@
 
 <script setup>
 import {blog_Name} from '@/config/index'
+import { useBlogStore } from '#imports';
+const blogStore = useBlogStore();
 </script>

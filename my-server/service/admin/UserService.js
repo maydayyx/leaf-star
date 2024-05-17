@@ -29,6 +29,7 @@ const UserService = {
   },
   // 注册
   register: async (username, password) => {
+    // console.log(username, password);
     const salt = bcrypt.genSaltSync(10);
     const encryptedPassword = bcrypt.hashSync(password, salt);
     return await UserModel.create({ username, password: encryptedPassword });

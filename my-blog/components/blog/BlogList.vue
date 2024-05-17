@@ -3,7 +3,7 @@
   <div class="mx-auto w-full max-w-2xl">
     <div class="grid justify-items-stretch gap-6 justify-self-end">
       <!-- 骨架屏 -->
-      <div v-if="!blogStore.artcileList.length">
+      <div v-if="loading && !blogStore.artcileList.length">
         <NuxtLink
           class="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
           ><figure
@@ -65,11 +65,14 @@
           </div>
         </NuxtLink>
       </div>
+      <div v-else-if="!loading && !blogStore.artcileList.length">
+        <span>暂无文章</span>
+      </div>
       <NuxtLink
         v-else
         v-for="item in blogStore.artcileList"
         class="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
-        :to="`/blog/${item._id}`"
+        :to="`/blog/id/${item._id}`"
         ><figure
           class="mx-auto w-full object-cover p-6 max-sm:pb-0 sm:max-w-[12rem] sm:pe-0"
         >
@@ -96,4 +99,5 @@
 <script setup>
 import { useBlogStore } from "#imports";
 const blogStore = useBlogStore();
+const {loading} = storeToRefs(blogStore)
 </script>

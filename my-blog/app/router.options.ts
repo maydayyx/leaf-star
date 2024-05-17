@@ -15,8 +15,12 @@ export default <RouterConfig>{
         },
         {
             name:'blogId',
-            path:'/blog/:blogId',
-            component:()=>import('../components/blog/[blogId].vue')
+            path:'/blog/id/:blogId',
+            component:()=>import('../components/blog/id/[blogId].vue')
+        },{
+            name:'tagId',
+            path:'/blog/tag/:tagId',
+            component:()=>import('@/components/blog/tag/[tagId].vue')
         }
       ]
     },

@@ -9,10 +9,10 @@ const ArticleController = {
       content,
       cover,
       updateTime,
-      tags:Number(tags),
+      tags,
       isPublish:Number(isPublish),
       editTime:new Date(),
-      desc
+      desc,
     });
     res.status(200).json({message:'Release successfully',data:result})
   },
@@ -29,15 +29,16 @@ const ArticleController = {
   },
   // 修改文章
   update:async (req, res) => {
-    const cover = req.file ? `/articleUploads/${req.file.filename}` : "";
+    console.log(req.file)
+    const cover = req.file ? `/articleUploads/${req.file.filename}` : req.body.cover;
     const { _id,title, content, updateTime, tags, isPublish,desc,editTime} = req.body;
     const result = await ArticleService.update({
       _id,
       title,
       content,
-      cover,
+      cover:cover !==''?cover:undefined,
       updateTime,
-      tags:Number(tags),
+      tags,
       isPublish:Number(isPublish),
       editTime,
       desc

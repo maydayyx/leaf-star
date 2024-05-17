@@ -1,6 +1,6 @@
 import router from '@/router'
 import Setting from '../setting'
-import { Get_Token } from './utils/Token'
+import { Get_Token,Remove_Token } from './utils/Token'
 import useUserStore from './stores/modules/user'
 import pinia from './stores'
 const userStore = useUserStore(pinia)
@@ -18,28 +18,23 @@ router.beforeEach(async (to, _, next) => {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      // 是否存在用户信息
-      if (userStore.username != '') {
-        next()
-      } else {
-        try {
-          // 如果不存在用户信息就发请求获取
+      try {
+        // 是否存在用户信息
+        if (userStore.username !== '') {
+          next()
+        } else {
           await userStore.getUserInfo()
           next()
-        } catch (error) {
-          // token过期的情况
-          console.log('token过期了');
-          if (to.path == '/login') {
-            next()
-          }else {
-            next({path:'/login'})
-          }
         }
+      } catch (error) {
+        console.log('获取用户信息失败或 Token 过期')
+        Remove_Token()
+        next({ path: '/login' })
       }
     }
   } else {
     console.log('没登陆')
-    if (to.path == '/login') {
+    if (to.path === '/login') {
       next()
     } else {
       next({ path: '/login' })

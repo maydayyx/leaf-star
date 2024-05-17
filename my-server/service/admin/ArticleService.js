@@ -1,4 +1,3 @@
-const { update } = require('../../controller/admin/ArticleController')
 const ArticleModel = require('../../models/article')
 const ArticleService = {
     add:async ({title,content,cover,updateTime,tags,isPublish,editTime,desc}) => {
@@ -15,9 +14,9 @@ const ArticleService = {
     },
     getArticleList:async ({_id}) => {
         if(_id){
-            return await ArticleModel.findOne({_id})
+            return await ArticleModel.findOne({_id}).populate('tags')
         }else {
-            return await ArticleModel.find({}).sort({updateTime:-1})
+            return await ArticleModel.find({}).sort({updateTime:-1}).populate('tags')
         }
     },
     publish:async ({_id,isPublish,editTime}) => {
