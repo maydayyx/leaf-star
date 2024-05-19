@@ -65,7 +65,7 @@
             </div>
           </NuxtLink>
         </div>
-        <div v-if="!loading && !blogStore.artcileList.length">
+        <div v-if="!loading && !blogStore.artcileListByTag.length">
           <span>暂无文章</span>
        </div>
         <NuxtLink
