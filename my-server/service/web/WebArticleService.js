@@ -1,4 +1,3 @@
-const { default: mongoose } = require("mongoose");
 const ArticleModel = require("../../models/article");
 const WebArticleServie = {
   getArticleList: async () => {
@@ -18,6 +17,20 @@ const WebArticleServie = {
    } catch (error) {
     throw error
    }
+  },
+  searchArticle:async ({keyword}) => {
+
+    try {
+      if(keyword!=='') {
+      const articleWithKeyword = await ArticleModel.find({
+        title:{$regex:keyword,$options: 'i'},
+        isPublish:1
+      })
+      return articleWithKeyword
+    }
+    } catch (error) {
+      throw error
+    }
   }
 };
 

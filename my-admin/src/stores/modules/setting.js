@@ -4,7 +4,7 @@ let useLayoutSettingStore = defineStore('Setting',{
     state:()=>{
         return {
             fold:false,
-            refresh:false
+            refresh:false,
         }
     },
     persist:true

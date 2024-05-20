@@ -1,5 +1,11 @@
 <template>
-  <el-button circle size="small" :icon="Refresh"></el-button>
+  <el-button
+    circle
+    size="small"
+    :icon="Refresh"
+    :class="{ rotate: isRefresh }"
+    @click="refresh"
+  ></el-button>
   <el-button circle size="small" :icon="fullScreen" @click="Screen"></el-button>
   <el-button
     circle
@@ -13,8 +19,8 @@
       {{ username }}
       <el-icon class="el-icon--right">
         <i-ep-arrow-down />
-      </el-icon>
-    </span>
+      </el-icon> </span
+    >APISpace
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item @click="handleLogout">退出登陆</el-dropdown-item>
@@ -83,6 +89,16 @@ const handleLogout = async () => {
   ElMessage.success('退出成功')
 }
 
+// 刷新
+const isRefresh = ref(false)
+const refresh = () => {
+  isRefresh.value = true
+  setTimeout(() => {
+    window.location.reload()
+    isRefresh.value = false
+  }, 200)
+}
+
 const avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
 </script>
 
@@ -92,5 +108,17 @@ const avatar = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.
 }
 .el-button {
   margin-top: 1px;
+}
+.rotate {
+  animation: refreshRotate 1s linear infinite;
+}
+
+@keyframes refreshRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>

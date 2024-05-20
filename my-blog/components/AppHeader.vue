@@ -5,7 +5,7 @@
     <div class="navbar-start hidden sm:block">
       <div class="avatar">
         <div class="w-10 h-auto rounded-full ml-10">
-          <img :src=default_Avatar />
+          <img :src="default_Avatar" />
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@
           }}</NuxtLink>
           <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">
-                {{ $t("Share") }}
+              {{ $t("Share") }}
             </div>
             <ul
               tabindex="0"
@@ -85,14 +85,38 @@
 
     <div class="navbar-end">
       <!-- 搜索框 -->
-      <input
-        ref="searchInput"
-        v-if="showSearchBox"
-        type="text"
-        :placeholder="`${$t('TypeHere')}`"
-        class="input input-sm mx-6 hidden sm:block w-100 max-w-xs"
-        @blur="hiddenSearchBox"
-      />
+      <div class="relative">
+        <input
+          ref="searchInput"
+          v-if="showSearchBox"
+          type="text"
+          :placeholder="`${$t('TypeHere')}`"
+          class="input input-sm mx-6 hidden sm:block w-100 max-w-xs"
+          v-model="searchText"
+          @blur="hiddenSearchBox"
+          @input="searchArticle"
+        />
+        <div
+          v-if="searchResultToggle"
+          :class="{ hidden: searchText.length === 0 }"
+          class="absolute top-12 left-0 w-60 h-auto bg-base-200 rounded-lg p-3"
+        >
+          <ul>
+            <li
+              class="my-3"
+              v-for="(item, index) in searchResult"
+              :key="item._id"
+            >
+              <NuxtLink
+                :to="`/blog/id/${item._id}`"
+                class="transparent text-center"
+                >{{ item.title }}
+              </NuxtLink>
+              <div class="divider"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
       <!-- 搜索图标 -->
       <svg
         v-show="!showSearchBox"
@@ -212,8 +236,8 @@
 </template>
 
 <script setup>
-import {my_Github,default_Avatar } from '@/config/index'
-
+import { my_Github, default_Avatar } from "@/config/index";
+import _ from "lodash";
 //获取nuxt仓库
 const nuxtStore = useNuxtStore();
 
@@ -235,22 +259,64 @@ const changeTheme = () => {
 const showSearchBox = ref(false);
 
 //搜索框实例
-const searchInput = ref(null)
+const searchInput = ref(null);
 
 //点击搜索按钮的回调
+const showSearchBoxTimer = null
 const handleSearch = () => {
   showSearchBox.value = !showSearchBox.value;
-  if(showSearchBox.value) {
-    setTimeout(() => {
+  if (showSearchBox.value) {
+    showSearchBoxTimer = setTimeout(() => {
       searchInput.value.focus();
     }, 10);
   }
 };
 
 //失去焦点后隐藏搜索框
+const hiddenSearchBoxTimer = null
 const hiddenSearchBox = () => {
-  showSearchBox.value=!showSearchBox
-}
+ hiddenSearchBoxTimer = setTimeout(() => {
+    showSearchBox.value = !showSearchBox;
+    //清空搜索框内容
+    searchText.value = "";
+    //清空搜索结果
+    searchResult.value = [];
+  }, 500);
+};
+
+//搜索关键词
+const searchText = ref("");
+//显示搜索结果框
+const searchResultToggle = ref(false);
+
+//存储搜索结果
+const searchResult = ref([]);
+
+//节流
+const debounceReq = _.debounce(async () => {
+  const res = await $fetch("/webapi/article/search", {
+    method: "post",
+    query: { keyword: searchText.value },
+  });
+  if (res.data.length > 0) {
+    searchResult.value = res.data;
+    searchResultToggle.value = true;
+  }
+}, 2000);
+
+//发送请求
+const searchArticle = async () => {
+  if (searchText.value.trim !== "") {
+    searchResult.value = [];
+    searchResultToggle.value = false;
+    debounceReq();
+  }
+};
+
+
+onBeforeUnmount(()=>{
+  clearTimeout(showSearchBoxTimer,hiddenSearchBoxTimer)
+})
 
 //i18n
 const { locale, setLocale } = useI18n();

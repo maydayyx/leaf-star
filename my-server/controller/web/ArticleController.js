@@ -1,3 +1,4 @@
+
 const WebArticleServie = require('../../service/web/WebArticleService')
 const ArticleController = {
     getArticleList: async (req, res) => {
@@ -12,9 +13,13 @@ const ArticleController = {
     },
     getArticleListByTag:async(req,res) => {
         const {id:_id} = req.params
-        console.log(req.params.id)
         const result = await WebArticleServie.getArticleListByTag({_id})
         res.status(200).json({message:"Get ArticleListByTag Successfully!",data:result})
+    },
+    searchArticle:async(req,res) => {
+       const { keyword } = req.query
+       const result = await WebArticleServie.searchArticle({keyword})
+       res.json({message:'ok',data:result})
     }
 }
 
