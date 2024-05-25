@@ -33,13 +33,15 @@ onMounted(async () => {
   try {
 
     // 并行发送请求
-    const [articleRes, tagRes] = await Promise.all([
-      $fetch("/webapi/articleList"),
+    const [articleRes, tagRes,friendRes] = await Promise.all([
+      $fetch("/webapi/articleList",{query:{order:-1}}),
       $fetch("/webapi/tag/list"),
+      $fetch('/webapi/friend/list')
     ]);
     
     blogStore.artcileList = articleRes.data;
     blogStore.tagList = tagRes.data;
+    blogStore.friendList = friendRes.data;
     loading.value = false
   } catch (error) {
     // 处理请求失败的情况

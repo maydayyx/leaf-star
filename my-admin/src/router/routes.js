@@ -74,6 +74,23 @@ export default [
       }
     ]
   },
+  {
+    path:'/friend',
+    name:'Friend',
+    redirect:'/friend/list',
+    component: () => import('@/layout/index.vue'),
+    children:[
+      {
+        path: '/friend/list',
+        name: 'FriendList',
+        component: () => import('@/views/friend/index.vue'),
+        meta: {
+          title: '友链',
+          icon:IconEpLink
+        }
+      }
+    ]
+  },
   // 标签管理
   {
     path: '/tag',

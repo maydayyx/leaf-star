@@ -24,7 +24,9 @@ export default defineI18nConfig(() => ({
         Share:'分享',
         Utils:'实用工具',
         Copied:'邮箱复制成功.',
-        GoBack:"返回首页"
+        GoBack:"返回首页",
+        Moreinterestingsouls:'更多有趣的灵魂',
+        Alwaysyoungandalwaystearful:'永远年轻 永远热泪盈眶！'
       },
       zh_HK:{
         Home:'首頁',
@@ -37,7 +39,9 @@ export default defineI18nConfig(() => ({
         Share:'分享',
         Utils:'實用工具',
         Copied:'郵箱複製成功了.',
-        GoBack:"返回首頁"
+        GoBack:"返回首頁",
+        Moreinterestingsouls:'更多有趣的靈魂',
+        Alwaysyoungandalwaystearful:'永遠年輕 永遠熱淚盈眶'
       },
       en_GB: {
         Home: 'Home',
@@ -50,7 +54,9 @@ export default defineI18nConfig(() => ({
         Share:'Share',
         Utils:'Utils',
         Copied:'My email has been copied.',
-        GoBack:"Go Back"
+        GoBack:"Go Back",
+        Moreinterestingsouls:'More interesting souls',
+        Alwaysyoungandalwaystearful:'Always young and always tearful'
       }
     }
   }))

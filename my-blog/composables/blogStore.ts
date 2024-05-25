@@ -4,6 +4,7 @@ export const useBlogStore = defineStore("blogStore", {
       artcileList: [],
       tagList:[],
       artcileListByTag:[],
+      friendList:[],
       loading: true,
     };
   },

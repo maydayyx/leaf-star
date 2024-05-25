@@ -54,5 +54,10 @@ export default <RouterConfig>{
       path:'/utils',
       component:()=>import('../pages/share/utils/index.vue')
     },
+    {
+      name:'photo',
+      path:'/photo',
+      component:()=>import('../pages/share/photo/index.vue')
+    }
   ],
 }

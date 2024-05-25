@@ -17,6 +17,7 @@ declare global {
   const IconEpEdit: typeof import('~icons/ep/edit')['default']
   const IconEpFullScreen: typeof import('~icons/ep/full-screen')['default']
   const IconEpHomeFilled: typeof import('~icons/ep/home-filled')['default']
+  const IconEpLink: typeof import('~icons/ep/link')['default']
   const IconEpList: typeof import('~icons/ep/list')['default']
   const IconEpMinus: typeof import('~icons/ep/minus')['default']
   const IconEpMoon: typeof import('~icons/ep/moon')['default']

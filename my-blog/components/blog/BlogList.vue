@@ -1,7 +1,7 @@
 <template>
   <!-- 博客列表 -->
   <div class="mx-auto w-full max-w-2xl">
-    <div class="grid justify-items-stretch gap-6 justify-self-end">
+    <div class=" grid justify-items-stretch gap-6 justify-self-end">
       <!-- 骨架屏 -->
       <div v-if="loading && !blogStore.artcileList.length">
         <NuxtLink
@@ -73,14 +73,17 @@
         v-for="item in blogStore.artcileList"
         class="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
         :to="`/blog/id/${item._id}`"
-        ><figure
+        >
+       <div class="sm:indicator">
+         <span v-if="blogStore.artcileList[0]==item" class="hidden indicator-item badge badge-primary sm:block">new</span> 
+        <figure
           class="mx-auto w-full object-cover p-6 max-sm:pb-0 sm:max-w-[12rem] sm:pe-0"
         >
           <img
             loading="lazy"
             :src="`http://localhost:3000/${item.cover}`"
             class="border-base-content bg-base-300 rounded-btn border border-opacity-5"
-            alt="How to make a bidirectional site using Tailwind CSS and daisyUI"
+            alt="文章图片"
           />
         </figure>
         <div class="card-body">
@@ -91,6 +94,7 @@
             {{ item.desc }}
           </p>
         </div>
+       </div>
       </NuxtLink>
     </div>
   </div>

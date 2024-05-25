@@ -2,12 +2,13 @@
 const WebArticleServie = require('../../service/web/WebArticleService')
 const ArticleController = {
     getArticleList: async (req, res) => {
-        const result = await WebArticleServie.getArticleList()
+        const {order} = req.query
+        const result = await WebArticleServie.getArticleList(order)
         res.status(200).json({message:"Get ArticleList Successfully!",data:result})
     },
     getArticle: async (req, res) => {
         const { id:_id } = req.params
-
+        console.log(_id)
         const result = await WebArticleServie.getArticle({ _id })
         res.status(200).json({message:"Get Article Successfully!",data:result})
     },

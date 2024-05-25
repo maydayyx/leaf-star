@@ -6,7 +6,7 @@
           loading="lazy"
           :src="`http://localhost:3000/${cover}`"
           class="border-base-content bg-base-300 rounded-box border border-opacity-5"
-          alt="How to make a bidirectional site using Tailwind CSS and daisyUI"
+          alt="文章图片"
         />
       </figure>
       <div>
@@ -22,12 +22,38 @@
         <!-- 文章内容 -->
         <div v-html="content"></div>
       </div>
-      <div class="mb-2 flex flex-wrap gap-2 text-xs opacity-60">
-        <span data-svelte-h="svelte-1j0hbyd">Tags:</span>
-       <template v-for="tag in tags" :key="tag._id">
-        <NuxtLink class="link">{{ tag.name }}</NuxtLink>
-       </template>
+      <div class="mb-2 flex flex-wrap gap-2 text-sm opacity-60">
+        <span>Tags:</span>
+        <template v-for="tag in tags" :key="tag._id">
+          <NuxtLink class="link">{{ tag.name }}</NuxtLink>
+        </template>
+        <!-- 
+          由于是页面挂载才发请求获取数据
+          导致页面访问量不能及时更新 所以用获取到的数据+1
+         -->
+        <span class="ml-10"
+          >Watch:<em class="font-bold">{{ viewCount + 1 }}</em></span
+        >
+        <!-- <span class="relative ml-20">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 absolute bottom-0 right-0"
+            fill="#FF0000"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+          </svg>
+        </span> -->
       </div>
+      <div class="card w-full h-auto shadow mt-10">
+      <div class="card-title text-blcak mb-5">评论区</div>
+      <Valine :placeholder="placeholder"/>
+    </div>
     </div>
   </div>
 </template>
@@ -42,8 +68,8 @@ let cover = ref();
 let content = ref();
 let title = ref();
 let updateTime = ref();
-let tags = ref([])
-
+let tags = ref([]);
+let viewCount = ref();
 // 记录滚动条的位置
 const scrollPosition = ref(0);
 
@@ -59,7 +85,8 @@ onMounted(async () => {
   content.value = res.data.content;
   title.value = res.data.title;
   updateTime.value = res.data.updateTime;
-  tags.value = [...res.data.tags]
+  tags.value = [...res.data.tags];
+  viewCount.value = res.data.viewCount[0];
   // 监听滚动事件
   window.addEventListener("scroll", handleScroll);
   // 获取本地存储的滚动条位置
@@ -86,6 +113,8 @@ useHead({
   */
   title: () => title.value,
 });
+
+const placeholder = '快来评价(建议)一下吧！'
 </script>
 
 <style lang="scss" scoped></style>
