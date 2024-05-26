@@ -8,7 +8,6 @@ const ArticleController = {
     },
     getArticle: async (req, res) => {
         const { id:_id } = req.params
-        console.log(_id)
         const result = await WebArticleServie.getArticle({ _id })
         res.status(200).json({message:"Get Article Successfully!",data:result})
     },

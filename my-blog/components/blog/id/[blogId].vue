@@ -86,7 +86,7 @@ onMounted(async () => {
   title.value = res.data.title;
   updateTime.value = res.data.updateTime;
   tags.value = [...res.data.tags];
-  viewCount.value = res.data.viewCount[0];
+  viewCount.value = res.data.viewCount;
   // 监听滚动事件
   window.addEventListener("scroll", handleScroll);
   // 获取本地存储的滚动条位置

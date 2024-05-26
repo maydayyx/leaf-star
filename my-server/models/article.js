@@ -11,7 +11,7 @@ const articleSchema = new mongoose.Schema({
   editTime:Date, //修改时间
   desc:String, //文章描述
   tags:[{type:mongoose.Schema.Types.ObjectId,ref:'tags'}],
-  viewCount:[{type:Number,default:0}]
+  viewCount:{type:Number,default:0}
 });
 
 // 创建模型对象

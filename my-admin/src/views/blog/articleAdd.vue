@@ -47,12 +47,11 @@ const articleForm = reactive({
 onMounted(async()=>{
   // 获取标签列表
   const res = await reqGetList()
-  tags.push(...res.data)
+  tags.value = res.data
 })
 
 // 标签
-const tags = [
-]
+const tags = ref([])
 // 图片变化的回调
 const handleChange = (file) => {
   articleForm.cover = URL.createObjectURL(file)

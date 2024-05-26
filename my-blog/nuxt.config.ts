@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
   ],
   devServer:{
-    port:8080
+    port:8081
   },
   nitro:{
     devProxy:{
