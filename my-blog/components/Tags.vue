@@ -66,13 +66,13 @@
             </p>
           </div>
           <ul class="menu menu-horizontal lg:menu-vertical lg:w-56">
-            <li class="menu-title">{{$t('Tags')}}</li>
+            <li class="menu-title" @click="">{{$t('Tags')}}</li>
             <li  v-if="blogStore.tagList.length>0">
               <NuxtLink
                 data-sveltekit-reload=""
                 v-for="(tag,index) in blogStore.tagList"
                 :key="tag._id"
-                :to="`/blog/tag/${tag._id}`"
+                @click="handlerTagClick(tag._id)"
                 class="false"
                 >{{ tag.name }}</NuxtLink
               >
@@ -90,4 +90,11 @@
 import {blog_Name} from '@/config/index'
 import { useBlogStore } from '#imports';
 const blogStore = useBlogStore();
+
+const $r = useRouter()
+
+const handlerTagClick = async (_id) => {
+  await blogStore.getArticleListByTag(_id)
+  $r.push('/homeByTag')
+}
 </script>

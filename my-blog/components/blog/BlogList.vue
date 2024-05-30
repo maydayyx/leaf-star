@@ -3,7 +3,7 @@
   <div class="mx-auto w-full max-w-2xl">
     <div class=" grid justify-items-stretch gap-6 justify-self-end">
       <!-- 骨架屏 -->
-      <div v-if="loading && !blogStore.artcileList.length">
+      <div v-if="loading && !artcileList.length">
         <NuxtLink
           class="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
           ><figure
@@ -65,17 +65,19 @@
           </div>
         </NuxtLink>
       </div>
-      <div v-else-if="!loading && !blogStore.artcileList.length">
+      <div v-else-if="!loading && !artcileList.length">
         <span>暂无文章</span>
       </div>
+      <!--         @click="goDetail(item._id)" -->
       <NuxtLink
         v-else
-        v-for="item in blogStore.artcileList"
+        v-for="item in $route.fullPath=='/home'?artcileList:artcileListByTag"
         class="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
         :to="`/blog/id/${item._id}`"
+
         >
        <div class="sm:indicator">
-         <span v-if="blogStore.artcileList[0]==item" class="hidden indicator-item badge badge-primary sm:block">new</span> 
+         <span v-if="artcileList[0]==item" class="hidden indicator-item badge badge-primary sm:block">new</span> 
         <figure
           class="mx-auto w-full object-cover p-6 max-sm:pb-0 sm:max-w-[12rem] sm:pe-0"
         >
@@ -101,8 +103,8 @@
 </template>
 
 <script setup>
+// 获取环境变量
 const config = useRuntimeConfig()
-import { useBlogStore } from "#imports";
-const blogStore = useBlogStore();
-const {loading} = storeToRefs(blogStore)
+// 接受父亲传来的数据
+defineProps(['artcileList','loading','artcileListByTag'])
 </script>

@@ -1,5 +1,5 @@
 <template>
-    实用工具
+    <BlogList/>
 </template>
 
 <script setup>

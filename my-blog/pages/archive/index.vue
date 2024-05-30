@@ -1,9 +1,10 @@
 <template>
   <div class="overflow-auto">
     <ul
+    v-if="archiveList"
       class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical"
     >
-      <li v-for="(item,index) in articleList" :key="item._id">
+      <li v-for="(item, index) in archiveList" :key="item._id">
         <div class="timeline-middle">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -18,8 +19,17 @@
             />
           </svg>
         </div>
-        <div :class="{'timeline-start md:text-end':(articleList.length-index)%2===0,'timeline-end':(articleList.length-index)%2!==0}" class="mb-10">
-          <time class="font-mono italic">{{ item.updateTime.substring(0, 10) }}</time>
+        <div
+          :class="{
+            'timeline-start md:text-end':
+              (archiveList.length - index) % 2 === 0,
+            'timeline-end': (archiveList.length - index) % 2 !== 0,
+          }"
+          class="mb-10"
+        >
+          <time class="font-mono italic">{{
+            item.updateTime.substring(0, 10)
+          }}</time>
           <div class="text-lg font-black">{{ item.title }}</div>
           {{ item.desc }}
         </div>
@@ -30,13 +40,12 @@
 </template>
 
 <script setup>
-const articleList = ref([]);
-onMounted(async () => {
-  const result = await $fetch("/webapi/articleList", { query: { order: 1 } });
-  articleList.value = result.data;
-});
-
+const blogStore = useBlogStore();
+const { archiveList } = storeToRefs(blogStore);
 useHead({
   title: "Archive",
 });
+// definePageMeta({
+//   keepalive: true,
+// });
 </script>

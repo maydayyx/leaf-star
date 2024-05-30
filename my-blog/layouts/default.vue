@@ -19,27 +19,20 @@
 <script setup>
 import { useBlogStore } from "#imports";
 const blogStore = useBlogStore();
-const {loading} = storeToRefs(blogStore)
+const { loading } = storeToRefs(blogStore);
+const { getArtileList, getTagList, getFriendLinkList,getArchiveList } = blogStore;
 /* 
   在页面挂载之前发请求获取文章列表
 */
 onMounted(async () => {
   try {
-    // 并行发送请求
-    const [articleRes, tagRes,friendRes] = await Promise.all([
-      $fetch("/webapi/articleList",{query:{order:-1}}),
-      $fetch("/webapi/tag/list"),
-      $fetch('/webapi/friend/list')
-    ]);
-    
-    blogStore.artcileList = articleRes.data;
-    blogStore.tagList = tagRes.data;
-    blogStore.friendList = friendRes.data;
-    loading.value = false
+    const request = [getArtileList(), getFriendLinkList(), getTagList(),getArchiveList()];
+    await Promise.all(request);
+    loading.value = false;
   } catch (error) {
     // 处理请求失败的情况
     console.error("请求失败:", error);
-    loading.value = false
+    loading.value = false;
   }
 });
 </script>

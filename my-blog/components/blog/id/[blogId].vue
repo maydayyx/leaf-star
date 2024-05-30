@@ -15,7 +15,7 @@
           <span title="1 Mar 2024" class="italic"
             >{{ updateTime }}&nbsp;&nbsp;</span
           >
-          <span>陕西 西安</span>
+          <span>陕西 西安 demo:{{ demo }}</span>
         </div>
         <!-- 文章标题 -->
         <h2>{{ title }}</h2>
@@ -78,6 +78,9 @@ const handleScroll = () => {
   scrollPosition.value = window.scrollY;
   localStorage.setItem("scrollPosition", scrollPosition.value);
 };
+
+
+defineProps(['demo'])
 
 onMounted(async () => {
   // 根据文章的ID获取文章内容

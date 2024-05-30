@@ -14,14 +14,16 @@ export default <RouterConfig>{
             component:()=>import('../components/blog/BlogList.vue'),
         },
         {
+          name:'homeByTag',
+          path:'/homeByTag',
+          component:()=>import('../components/blog/BlogList.vue'),
+      },
+        {
             name:'blogId',
             path:'/blog/id/:blogId',
             component:()=>import('../components/blog/id/[blogId].vue')
-        },{
-            name:'tagId',
-            path:'/blog/tag/:tagId',
-            component:()=>import('@/components/blog/tag/[tagId].vue')
-        }
+        },
+        
       ]
     },
     {

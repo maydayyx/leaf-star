@@ -33,7 +33,10 @@
           class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
-            <NuxtLink to="/home">{{ $t("Home") }}</NuxtLink>
+            <!-- @click="blogStore.getArtileList()" -->
+            <NuxtLink  to="/">{{
+              $t("Home")
+            }}</NuxtLink>
           </li>
           <li>
             <NuxtLink to="/archive">{{ $t("Archive") }}</NuxtLink>
@@ -54,9 +57,11 @@
     <div class="navbar-center hidden sm:block">
       <div class="flex justify-end flex-1 px-2">
         <div class="flex items-stretch">
-          <NuxtLink to="/" class="btn btn-ghost rounded-btn">{{
-            $t("Home")
-          }}</NuxtLink>
+          <NuxtLink
+            to="/"
+            class="btn btn-ghost rounded-btn"
+            >{{ $t("Home") }}</NuxtLink
+          >
           <NuxtLink to="/archive" class="btn btn-ghost rounded-btn">{{
             $t("Archive")
           }}</NuxtLink>
@@ -240,6 +245,8 @@ import { my_Github, default_Avatar } from "@/config/index";
 import _ from "lodash";
 //获取nuxt仓库
 const nuxtStore = useNuxtStore();
+//获取文章仓库
+const blogStore = useBlogStore();
 
 //在页面挂载之前
 onMounted(() => {
@@ -262,7 +269,7 @@ const showSearchBox = ref(false);
 const searchInput = ref(null);
 
 //点击搜索按钮的回调
-const showSearchBoxTimer = null
+const showSearchBoxTimer = null;
 const handleSearch = () => {
   showSearchBox.value = !showSearchBox.value;
   if (showSearchBox.value) {
@@ -273,9 +280,9 @@ const handleSearch = () => {
 };
 
 //失去焦点后隐藏搜索框
-const hiddenSearchBoxTimer = null
+const hiddenSearchBoxTimer = null;
 const hiddenSearchBox = () => {
- hiddenSearchBoxTimer = setTimeout(() => {
+  hiddenSearchBoxTimer = setTimeout(() => {
     showSearchBox.value = !showSearchBox;
     //清空搜索框内容
     searchText.value = "";
@@ -313,10 +320,9 @@ const searchArticle = async () => {
   }
 };
 
-
-onBeforeUnmount(()=>{
-  clearTimeout(showSearchBoxTimer,hiddenSearchBoxTimer)
-})
+onBeforeUnmount(() => {
+  clearTimeout(showSearchBoxTimer, hiddenSearchBoxTimer);
+});
 
 //i18n
 const { locale, setLocale } = useI18n();
