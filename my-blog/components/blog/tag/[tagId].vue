@@ -1,3 +1,4 @@
+<!-- 某个tag下的文章列表 -->
 <template>
     <!-- 博客列表 -->
     <div class="mx-auto w-full max-w-2xl">
@@ -78,7 +79,8 @@
           >
             <img
               loading="lazy"
-              :src="`http://localhost:3000/${item.cover}`"
+              v-if="config.public.baseURL"
+              :src="`${config.public.baseURL+item.cover}`"
               class="border-base-content bg-base-300 rounded-btn border border-opacity-5"
               alt="How to make a bidirectional site using Tailwind CSS and daisyUI"
             />
@@ -97,6 +99,7 @@
   </template>
   
   <script setup>
+  const config = useRuntimeConfig()
   import { useBlogStore } from "#imports";
   const blogStore = useBlogStore();
   const {loading} = storeToRefs(blogStore)

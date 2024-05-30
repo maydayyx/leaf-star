@@ -81,7 +81,7 @@
         >
           <img
             loading="lazy"
-            :src="`http://localhost:3000/${item.cover}`"
+            :src="`${config.public.baseURL+item.cover}`"
             class="border-base-content bg-base-300 rounded-btn border border-opacity-5"
             alt="文章图片"
           />
@@ -101,6 +101,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 import { useBlogStore } from "#imports";
 const blogStore = useBlogStore();
 const {loading} = storeToRefs(blogStore)

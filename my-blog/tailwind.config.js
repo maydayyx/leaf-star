@@ -15,6 +15,7 @@ export default {
   plugins: [require("@tailwindcss/typography"),require('daisyui'),addDynamicIconSelectors()],
   daisyui: {
     themes: ["winter", "dim"],
+    // darakTheme:false
   },
 }
 

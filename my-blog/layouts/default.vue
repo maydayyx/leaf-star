@@ -24,14 +24,7 @@ const {loading} = storeToRefs(blogStore)
   在页面挂载之前发请求获取文章列表
 */
 onMounted(async () => {
-  // 发请求并存储数据到仓库
-  // const res = await $fetch('/webapi/articleList')
-  // blogStore.artcileList = res.data
-  // const res1 = await $fetch('/webapi/tag/list')
-  // blogStore.tagList = res1.data
-
   try {
-
     // 并行发送请求
     const [articleRes, tagRes,friendRes] = await Promise.all([
       $fetch("/webapi/articleList",{query:{order:-1}}),

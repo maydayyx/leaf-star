@@ -4,7 +4,7 @@
       <figure class="w-full">
         <NuxtImg
           loading="lazy"
-          :src="`http://localhost:3000/${cover}`"
+          :src="`${config.public.baseURL+cover}`"
           class="border-base-content bg-base-300 rounded-box border border-opacity-5"
           alt="文章图片"
         />
@@ -59,6 +59,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig()
 // 获取路由参数
 const $R = useRoute();
 // 拿到文章的ID

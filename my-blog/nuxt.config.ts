@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
   ],
   devServer:{
-    port:8081
+    port:8080,
   },
   nitro:{
     devProxy:{
@@ -35,9 +35,14 @@ export default defineNuxtConfig({
     },
     routeRules: {
       '/webapi/**': {
-        proxy: 'http://localhost:3000/webapi'
+        proxy: 'http://localhost:3000/webapi/**'
       }
     }
   },
   ssr:false,
+  runtimeConfig:{
+    public:{
+      baseURL:process.env.BASE_URL
+    }
+  }
 });
