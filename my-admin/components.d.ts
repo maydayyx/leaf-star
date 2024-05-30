@@ -7,7 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Button: typeof import('./src/components/button/index.vue')['default']
     Editor: typeof import('./src/components/editor/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -35,7 +34,6 @@ declare module 'vue' {
     IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpStar: typeof import('~icons/ep/star')['default']
-    IEpView: typeof import('~icons/ep/view')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Upload: typeof import('./src/components/upload/index.vue')['default']
