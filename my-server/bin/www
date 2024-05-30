@@ -1,4 +1,5 @@
-const db = require('../db/index')
+#!/usr/bin/env node
+const db = require('../db/index.js')
 
 db(()=>{
 
