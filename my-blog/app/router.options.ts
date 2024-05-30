@@ -15,7 +15,7 @@ export default <RouterConfig>{
         },
         {
           name:'homeByTag',
-          path:'/homeByTag',
+          path:'/home/:id',
           component:()=>import('../components/blog/BlogList.vue'),
       },
         {

@@ -42,11 +42,13 @@ export const useBlogStore = defineStore("blogStore", {
       );
       this.artcileList = res.data;
     },
-    async getArticleListByTag(tagId: String) {
-      const res = await $fetch<FetchResponse<Article[]>>(
-        `/webapi/articleListByTag/${tagId}`
-      );
-      this.artcileListByTag = res.data;
+    async getArticleListByTag(_id: string) {
+      if(_id) {
+        const res = await $fetch<FetchResponse<Article[]>>(
+          `/webapi/articleListByTag/${_id}`
+        );
+        this.artcileListByTag = res.data;
+      }
     },
     async getTagList() {
       const res = await $fetch<FetchResponse<Tag[]>>("/webapi/tag/list");

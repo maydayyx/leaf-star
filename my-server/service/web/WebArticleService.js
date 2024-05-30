@@ -33,7 +33,7 @@ const WebArticleServie = {
     await this.incrementViewCount({_id})
     return article;
   },
-  getArticleListByTag: async ({ _id }) => {
+  getArticleListByTag: async ({_id}) => {
     try {
       const tagObjectId = new mongoose.Types.ObjectId(_id);
       const articleWithTag = await ArticleModel.find({

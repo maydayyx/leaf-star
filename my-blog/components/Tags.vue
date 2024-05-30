@@ -93,8 +93,7 @@ const blogStore = useBlogStore();
 
 const $r = useRouter()
 
-const handlerTagClick = async (_id) => {
-  await blogStore.getArticleListByTag(_id)
-  $r.push('/homeByTag')
+const handlerTagClick = (_id) => {
+  $r.push(`/home/${_id}`)
 }
 </script>

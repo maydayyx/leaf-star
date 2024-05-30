@@ -66,15 +66,13 @@
         </NuxtLink>
       </div>
       <div v-else-if="!loading && !artcileList.length">
-        <span>暂无文章</span>
+        <NoArticle/>
       </div>
-      <!--         @click="goDetail(item._id)" -->
       <NuxtLink
         v-else
         v-for="item in $route.fullPath=='/home'?artcileList:artcileListByTag"
         class="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
         :to="`/blog/id/${item._id}`"
-
         >
        <div class="sm:indicator">
          <span v-if="artcileList[0]==item" class="hidden indicator-item badge badge-primary sm:block">new</span> 
@@ -107,4 +105,11 @@
 const config = useRuntimeConfig()
 // 接受父亲传来的数据
 defineProps(['artcileList','loading','artcileListByTag'])
+
+const blogStore = useBlogStore()
+const $R = useRoute()
+onMounted(async()=>{
+  const {id:_id} = $R.params
+   await blogStore.getArticleListByTag(_id)
+})
 </script>
