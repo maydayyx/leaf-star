@@ -14,3 +14,10 @@ export const reqGetPhotoList = () => {
     url: '/photo/list'
   })
 }
+
+export const reqDelPhoto = (_id) => {
+  return $fecth({
+    method: 'delete',
+    url: `/photo/list/${_id}`
+  })
+}

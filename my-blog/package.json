@@ -6,6 +6,7 @@
     "build": "nuxt build --dotenv .env.development --exec",
     "build:pro": "nuxt build --dotenv  .env.production --exec",
     "dev": "PORT=8080 nuxt dev --dotenv .env.development --exec",
+    "dev-prod": "PORT=8080 nuxt dev --dotenv .env.production",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"

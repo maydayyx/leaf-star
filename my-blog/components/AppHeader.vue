@@ -42,7 +42,7 @@
             <NuxtLink to="/archive">{{ $t("Archive") }}</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/share">{{ $t("Share") }}</NuxtLink>
+            <NuxtLink to="/photo">{{ $t("Share") }}</NuxtLink>
           </li>
           <li>
             <NuxtLink to="/friend">{{ $t("Friend") }}</NuxtLink>
@@ -73,9 +73,9 @@
               tabindex="0"
               class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
             >
-              <li>
+              <!-- <li>
                 <NuxtLink to="/utils">{{ $t("Utils") }}</NuxtLink>
-              </li>
+              </li> -->
               <li>
                 <NuxtLink to="/photo">{{ $t("PhotoWall") }}</NuxtLink>
               </li>

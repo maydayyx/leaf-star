@@ -29,13 +29,18 @@
             </span>
         </template>
     </el-table-column>
+    <el-table-column label="操作" align="center">
+      <template #default="scope">
+        <el-button  type="danger" size="small" @click="handleDel(scope.row)">删除</el-button>
+      </template>
+    </el-table-column>
   </el-table>
   
 </template>
 
 <script setup>
 import { ref, computed} from 'vue'
-import { reqAddPhoto,reqGetPhotoList } from '@/api/photo';
+import { reqAddPhoto,reqGetPhotoList,reqDelPhoto } from '@/api/photo';
 const formData = ref({
   name: '',
   url: ''
@@ -55,6 +60,8 @@ const submitForm = async () => {
         form.value.validate(async(valid)=>{
             if(valid){
                 await reqAddPhoto(formData.value)
+                await getPhotoList()
+                ElMessage.success('添加成功！')
             }
         })
     } catch (error) {
@@ -72,4 +79,10 @@ const getPhotoList = async () => {
 onMounted(async()=>{
     await getPhotoList()
 })
+
+const handleDel = async ({_id}) => {
+  await reqDelPhoto(_id)
+  await getPhotoList()
+  ElMessage.success('删除成功')
+}
 </script>

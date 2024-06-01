@@ -5,6 +5,9 @@ const PhotoService = {
     },
     list:async() => {
         return await photoModel.find({})
+    },
+    deleteOne:async({id:_id}) => {
+        return await photoModel.deleteOne({_id})
     }
 }
 

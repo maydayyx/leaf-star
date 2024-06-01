@@ -3,13 +3,14 @@
     <ul
       class="grid gap-x-4 gap-y-4 grid-cols-3 sm:grid-cols-4 sm:gap-y-12 xl:col-span-4"
     >
-      <li  v-for="item in photoList" :key="item._id"  :data-tip="item.name" class="tooltip tooltip-info flex items-center gap-x-6">
+      <li
+        v-for="item in photoList"
+        :key="item._id"
+        :data-tip="item.name"
+        class="tooltip tooltip-info flex items-center gap-x-6"
+      >
         <!-- 使用LazyNuxtImg预览效果无法加载 -->
-        <NuxtImg
-          data-preview
-          class="rounded-xl "
-          :src="item.url"
-        />
+        <img loading="lazy" data-preview class="rounded-xl" :src="item.url" />
         <button class="btn hidden"></button>
       </li>
     </ul>
@@ -26,20 +27,20 @@ const nuxtStore = useNuxtStore();
 const { photoList } = storeToRefs(photoStore);
 
 onMounted(async () => {
+  console.log(photoList.value);
   await photoStore.getPhotoList();
-  await nextTick(()=>{
+  await nextTick(() => {
     mediumZoom("[data-preview]", {
-    margin: 24,
-    background: `${nuxtStore.theme}`,
+      margin: 24,
+      background: `${nuxtStore.theme}`,
+    });
   });
-  })
-  
 });
 </script>
 
 <style scoped>
-img{
-  width:200px ;
-  height:250px;
+img {
+  width: 200px;
+  height: 250px;
 }
 </style>
