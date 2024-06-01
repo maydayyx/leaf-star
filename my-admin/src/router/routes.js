@@ -114,6 +114,24 @@ export default [
       },
     ]
   },
+  // 照片
+  {
+    path:'/photo',
+    name:'Photo',
+    redirect:'/photo/list',
+    component: () => import('@/layout/index.vue'),
+    children:[
+      {
+        path: '/photo/list',
+        name: 'PhotoList',
+        component: () => import('@/views/photo/index.vue'),
+        meta: {
+          title: '照片墙',
+          icon:IconEpPictureFilled
+        }
+      }
+    ]
+  },
   // 404
   {
     name: '404',

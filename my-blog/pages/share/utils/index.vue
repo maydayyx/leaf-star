@@ -1,5 +1,5 @@
 <template>
-    <BlogList/>
+    utils
 </template>
 
 <script setup>

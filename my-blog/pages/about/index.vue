@@ -146,8 +146,8 @@
         />
       </div>
     </div> -->
-    <div class="card w-full h-auto shadow my-5">
-      <div class="card-title text-blcak mb-5">留言板</div>
+    <div class="mt-10">
+      <div class="card-title divider text-blcak mb-10">留言板</div>
       <Valine :placeholder="placeholder" />
     </div>
   </div>

@@ -30,6 +30,7 @@ declare module 'vue' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElText: typeof import('element-plus/es')['ElText']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']

@@ -26,7 +26,11 @@ export default defineI18nConfig(() => ({
         Copied:'邮箱复制成功.',
         GoBack:"返回首页",
         Moreinterestingsouls:'更多有趣的灵魂',
-        Alwaysyoungandalwaystearful:'永远年轻 永远热泪盈眶！'
+        Alwaysyoungandalwaystearful:'永远年轻 永远热泪盈眶！',
+        PhotoWall:'照片墙',
+        commentsSection:'评论区',
+        messageBoard:'留言板',
+        
       },
       zh_HK:{
         Home:'首頁',
@@ -41,7 +45,10 @@ export default defineI18nConfig(() => ({
         Copied:'郵箱複製成功了.',
         GoBack:"返回首頁",
         Moreinterestingsouls:'更多有趣的靈魂',
-        Alwaysyoungandalwaystearful:'永遠年輕 永遠熱淚盈眶'
+        Alwaysyoungandalwaystearful:'永遠年輕 永遠熱淚盈眶',
+        PhotoWall:'照片墻',
+        commentsSection:'評論區',
+        messageBoard:'留言板',
       },
       en_GB: {
         Home: 'Home',
@@ -56,7 +63,10 @@ export default defineI18nConfig(() => ({
         Copied:'My email has been copied.',
         GoBack:"Go Back",
         Moreinterestingsouls:'More interesting souls',
-        Alwaysyoungandalwaystearful:'Always young and always tearful'
+        Alwaysyoungandalwaystearful:'Always young and always tearful',
+        PhotoWall:'PhotoWall',
+        commentsSection:'Comments Section',
+        messageBoard:'Message Board',
       }
     }
   }))

@@ -76,6 +76,9 @@
               <li>
                 <NuxtLink to="/utils">{{ $t("Utils") }}</NuxtLink>
               </li>
+              <li>
+                <NuxtLink to="/photo">{{ $t("PhotoWall") }}</NuxtLink>
+              </li>
             </ul>
           </div>
           <NuxtLink to="/friend" class="btn btn-ghost rounded-btn">{{

@@ -15,7 +15,7 @@
           <span title="1 Mar 2024" class="italic"
             >{{ updateTime }}&nbsp;&nbsp;</span
           >
-          <span>陕西 西安 demo:{{ demo }}</span>
+          <span>中国 西安</span>
         </div>
         <!-- 文章标题 -->
         <h2>{{ title }}</h2>
@@ -50,8 +50,8 @@
           </svg>
         </span> -->
       </div>
-      <div class="card w-full h-auto shadow mt-10">
-      <div class="card-title text-blcak mb-5">评论区</div>
+      <div class="mt-10">
+      <div class="divider text-xl mb-10 ">{{ $t('commentsSection') }}</div>
       <Valine :placeholder="placeholder"/>
     </div>
     </div>

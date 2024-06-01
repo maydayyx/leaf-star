@@ -12,6 +12,8 @@ const TagRouter = require('./routes/admin/TagRouter')
 const WebTagRouter = require('./routes/web/WebTagRouter')
 const FriendRouter = require('./routes/admin/FriendRouter')
 const WebFriendRouter = require('./routes/web/WebFriendRouter')
+const PhotoRouter = require('./routes/admin/PhotoRouter')
+const WebPhotoRouter = require('./routes/web/WebPhotoRouter')
 var app = express();
 
 // view engine setup
@@ -32,6 +34,8 @@ app.use('/',TagRouter)
 app.use('/',WebTagRouter)
 app.use('/',FriendRouter)
 app.use('/',WebFriendRouter)
+app.use('/',PhotoRouter)
+app.use('/',WebPhotoRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
