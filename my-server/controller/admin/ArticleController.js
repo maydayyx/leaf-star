@@ -1,5 +1,9 @@
 const ArticleService = require('../../service/admin/ArticleService')
 const ArticleController = {
+  upload:async(req,res) =>{
+    const img = req.file ? `/articleUploads/${req.file.filename}` : "";
+    res.json(`http://localhost:3000${img}`)
+  },
   // 添加文章
   add: async (req, res) => {    
     const cover = req.file ? `/articleUploads/${req.file.filename}` : "";
@@ -32,6 +36,7 @@ const ArticleController = {
     console.log(req.file)
     const cover = req.file ? `/articleUploads/${req.file.filename}` : req.body.cover;
     const { _id,title, content, updateTime, tags, isPublish,desc,editTime} = req.body;
+    console.log(desc)
     const result = await ArticleService.update({
       _id,
       title,

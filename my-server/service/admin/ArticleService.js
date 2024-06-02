@@ -23,8 +23,8 @@ const ArticleService = {
         console.log(isPublish)
         return await ArticleModel.updateOne({_id},{isPublish,editTime})
     },
-    update:async ({_id,title,content,tags,isPublish,editTime,cover}) => {
-        return await ArticleModel.updateOne({_id},{title,content,tags,isPublish,editTime,cover})
+    update:async ({_id,title,content,tags,isPublish,editTime,cover,desc}) => {
+        return await ArticleModel.updateOne({_id},{title,desc,content,tags,isPublish,editTime,cover})
     },
     deleteList:async ({id:_id}) => {
         return await ArticleModel.deleteOne({_id})

@@ -18,6 +18,7 @@
   </template>
   
   <script setup>
+  const url = import.meta.env.VITE_APP_BASE_URL
   import { defineEmits,defineProps,computed } from "vue";
   const emit = defineEmits(['uploadChange'])
   const handleChange = (file) => {
@@ -26,7 +27,8 @@
   const props = defineProps({
       avatar:String
   })
-  const uploadUrl = computed(()=>props.avatar.includes('blob')?props.avatar:'http://127.0.0.1:3000'+props.avatar)
+  // const uploadUrl = computed(()=>props.avatar.includes('blob')?props.avatar:'http://127.0.0.1:3000'+props.avatar)
+  const uploadUrl = computed(()=>props.avatar.includes('blob')?props.avatar:url+props.avatar)
   </script>
   
   <style scoped>

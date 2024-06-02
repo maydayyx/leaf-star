@@ -53,7 +53,8 @@
   <!-- 预览文章弹出框 -->
   <el-dialog v-model="previewDialogVisible" center title="新闻预览" width="500" draggable>
     <div class="htmlContent">
-      <img :src="`http://localhost:3000/${previewData.cover}`" alt="" />
+      <!-- <img :src="`http://localhost:3000/${previewData.cover}`" alt="" /> -->
+      <img :src="`${previewUrl}/${previewData.cover}`" alt="" />
       <h1 style="text-align: center">{{ previewData.title }}</h1>
       <div style="font-size: 12px; text-align: center">
         {{ formatTime(previewData.editTime) }}
@@ -67,6 +68,7 @@
 </template>
 
 <script setup>
+  const previewUrl = import.meta.env.VITE_APP_BASE_URL
 // 引入Dayjs时间格式化函数
 import { formatTime } from '@/utils/Time'
 // 文章数据

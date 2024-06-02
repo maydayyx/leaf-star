@@ -6,6 +6,7 @@ const ArticleRouter = express.Router()
 const ArticleController = require('../../controller/admin/ArticleController')
 
 
+ArticleRouter.post('/adminapi/image/upload',upload.single('file'),ArticleController.upload)
 ArticleRouter.post('/adminapi/article/addArticle',upload.single('file'),ArticleController.add) // 添加文章
 ArticleRouter.get('/adminapi/article/ArticleList',ArticleController.getArticleList) // 获取文章列表
 ArticleRouter.get('/adminapi/article/ArticleList/:id',ArticleController.getArticleList) // 获取文章

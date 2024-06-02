@@ -1,0 +1,2 @@
+VITE_APP_BASE_URL: 'http://47.109.202.221:3000'
+VUE_APP_ENV = 'production'

@@ -14,3 +14,10 @@ export const reqGetList = () => {
         url:'/tag/list'
     })
 }
+
+export const reqDeleteTag = (_id) => {
+    return $fecth({
+        method:'delete',
+        url:`/tag/list/${_id}`,
+    })
+}

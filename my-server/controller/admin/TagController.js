@@ -17,6 +17,10 @@ const TagController = {
   getList:async(req,res) => {
     const result = await TagService.getList();
     res.json({data:result,code:200})
+  },
+  deleteTag:async(req,res) => {
+    await TagService.deleteTag(req.params);
+    res.json({message:'Delete tag successfully!',code:200})
   }
 };
 

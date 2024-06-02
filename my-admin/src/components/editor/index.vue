@@ -33,7 +33,19 @@ const editorRef = shallowRef()
 
 const mode = 'simple'
 const toolbarConfig = {}
-const editorConfig = { placeholder: '请输入内容...' }
+const editorConfig = { 
+  placeholder: '请输入内容...',
+  MENU_CONF: {
+    uploadImage:{
+      server:'/adminapi/image/upload',
+      fieldName: "file",
+      customInsert(res,insertFn) {
+         insertFn(res)
+      }
+    },
+    
+  }
+}
 // 组件销毁时，也及时销毁编辑器
 onBeforeUnmount(() => {
   const { value } = editorRef

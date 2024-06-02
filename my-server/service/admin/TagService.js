@@ -9,6 +9,9 @@ const TagService = {
   },
   getList:async() => {
     return await TagModel.find({});
+  },
+  deleteTag:async({id:_id}) => {
+    return await TagModel.findByIdAndDelete(_id);
   }
 };
 

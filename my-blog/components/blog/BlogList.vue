@@ -91,7 +91,7 @@
             {{ item.title }}
           </h2>
           <p class="text-xs opacity-60">
-            {{ item.desc }}
+            {{  item.desc }}
           </p>
         </div>
        </div>
